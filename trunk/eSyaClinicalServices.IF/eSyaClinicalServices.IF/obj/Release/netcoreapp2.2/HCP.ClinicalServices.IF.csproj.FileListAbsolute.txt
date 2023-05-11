@@ -1,0 +1,12 @@
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\bin\Release\netcoreapp2.2\HCP.ClinicalServices.IF.deps.json
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\bin\Release\netcoreapp2.2\HCP.ClinicalServices.IF.dll
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\bin\Release\netcoreapp2.2\HCP.ClinicalServices.IF.pdb
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\bin\Release\netcoreapp2.2\HCP.ClinicalServices.DO.dll
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\bin\Release\netcoreapp2.2\HCP.ClinicalServices.DO.pdb
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Release\netcoreapp2.2\HCP.ClinicalServices.IF.csprojAssemblyReference.cache
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Release\netcoreapp2.2\HCP.ClinicalServices.IF.csproj.CoreCompileInputs.cache
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Release\netcoreapp2.2\HCP.ClinicalServices.IF.AssemblyInfoInputs.cache
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Release\netcoreapp2.2\HCP.ClinicalServices.IF.AssemblyInfo.cs
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Release\netcoreapp2.2\HCP.ClinicalServices.IF.csproj.CopyComplete
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Release\netcoreapp2.2\HCP.ClinicalServices.IF.dll
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Release\netcoreapp2.2\HCP.ClinicalServices.IF.pdb

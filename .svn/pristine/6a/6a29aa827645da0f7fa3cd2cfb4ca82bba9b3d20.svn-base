@@ -1,0 +1,67 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using HCP.ClinicalServices.IF;
+using HCP.ClinicalServices.DO;
+
+namespace HCP.ClinicalServices.WebAPI.Controllers
+{
+    [Route("api/[controller]/[action]")]
+    [ApiController]
+    public class DoctorLeaveController : ControllerBase
+    {
+        private readonly IDoctorLeaveRepository _DoctorLeaveRepository;
+
+        public DoctorLeaveController(IDoctorLeaveRepository doctorLeaveRepository)
+        {
+            _DoctorLeaveRepository = doctorLeaveRepository;
+        }
+
+        /// <summary>
+        /// Insert into Doctor Leave Table
+        /// UI Reffered - Doctor Master,
+        /// </summary>
+        [HttpPost]
+        public async Task<IActionResult> InsertIntoDoctorLeave(DO_DoctorLeave obj)
+        {
+            var msg = await _DoctorLeaveRepository.InsertIntoDoctorLeave(obj);
+            return Ok(msg);
+        }
+
+        /// <summary>
+        /// Update Doctor Leave Table
+        /// UI Reffered - Doctor Master,
+        /// </summary>
+        [HttpPost]
+        public async Task<IActionResult> UpdateDoctorLeave(DO_DoctorLeave obj)
+        {
+            var msg = await _DoctorLeaveRepository.UpdateDoctorLeave(obj);
+            return Ok(msg);
+        }
+
+        /// <summary>
+        /// Get All Doctor Leave List
+        /// UI Reffered - Doctor Master,
+        /// </summary>
+        [HttpGet]
+        public async Task<IActionResult> GetDoctorLeaveListAll(int doctorId)
+        {
+            var msg = await _DoctorLeaveRepository.GetDoctorLeaveListAll(doctorId);
+            return Ok(msg);
+        }
+
+        /// <summary>
+        /// Get All Doctor Leave List
+        /// UI Reffered - Doctor Master,
+        /// </summary>
+        [HttpGet]
+        public async Task<IActionResult> GetDoctorLeaveData(int doctorId, DateTime leaveFromDate)
+        {
+            var msg = await _DoctorLeaveRepository.GetDoctorLeaveData(doctorId, leaveFromDate.Date);
+            return Ok(msg);
+        }
+    }
+}

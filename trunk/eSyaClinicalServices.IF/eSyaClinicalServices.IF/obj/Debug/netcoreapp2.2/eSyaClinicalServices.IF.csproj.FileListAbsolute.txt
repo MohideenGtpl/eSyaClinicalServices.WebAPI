@@ -1,0 +1,70 @@
+<<<<<<< .mine
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\bin\Debug\netcoreapp2.2\eSyaClinicalServices.IF.deps.json
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\bin\Debug\netcoreapp2.2\eSyaClinicalServices.IF.dll
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\bin\Debug\netcoreapp2.2\eSyaClinicalServices.IF.pdb
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\bin\Debug\netcoreapp2.2\eSyaClinicalServices.DO.dll
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\bin\Debug\netcoreapp2.2\eSyaClinicalServices.DO.pdb
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.csprojAssemblyReference.cache
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.csproj.CoreCompileInputs.cache
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.AssemblyInfoInputs.cache
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.AssemblyInfo.cs
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.csproj.CopyComplete
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.dll
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.pdb
+||||||| .r58
+D:\eSya Enterprise\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\bin\Debug\netcoreapp2.2\eSyaClinicalServices.IF.deps.json
+D:\eSya Enterprise\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\bin\Debug\netcoreapp2.2\eSyaClinicalServices.IF.dll
+D:\eSya Enterprise\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\bin\Debug\netcoreapp2.2\eSyaClinicalServices.IF.pdb
+D:\eSya Enterprise\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.csprojAssemblyReference.cache
+D:\eSya Enterprise\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.csproj.CoreCompileInputs.cache
+D:\eSya Enterprise\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.AssemblyInfoInputs.cache
+D:\eSya Enterprise\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.AssemblyInfo.cs
+D:\eSya Enterprise\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.dll
+D:\eSya Enterprise\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.pdb
+=======
+D:\eSya Enterprise\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\bin\Debug\netcoreapp2.2\eSyaClinicalServices.IF.deps.json
+D:\eSya Enterprise\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\bin\Debug\netcoreapp2.2\eSyaClinicalServices.IF.dll
+D:\eSya Enterprise\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\bin\Debug\netcoreapp2.2\eSyaClinicalServices.IF.pdb
+D:\eSya Enterprise\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.csprojAssemblyReference.cache
+D:\eSya Enterprise\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.csproj.CoreCompileInputs.cache
+D:\eSya Enterprise\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.AssemblyInfoInputs.cache
+D:\eSya Enterprise\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.AssemblyInfo.cs
+D:\eSya Enterprise\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.dll
+D:\eSya Enterprise\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.pdb
+D:\OfficeWorkingProjects\Working_AlleSyaWebAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\bin\Debug\netcoreapp2.2\eSyaClinicalServices.IF.deps.json
+D:\OfficeWorkingProjects\Working_AlleSyaWebAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\bin\Debug\netcoreapp2.2\eSyaClinicalServices.IF.dll
+D:\OfficeWorkingProjects\Working_AlleSyaWebAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\bin\Debug\netcoreapp2.2\eSyaClinicalServices.IF.pdb
+D:\OfficeWorkingProjects\Working_AlleSyaWebAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\bin\Debug\netcoreapp2.2\eSyaClinicalServices.DO.dll
+D:\OfficeWorkingProjects\Working_AlleSyaWebAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\bin\Debug\netcoreapp2.2\eSyaClinicalServices.DO.pdb
+D:\OfficeWorkingProjects\Working_AlleSyaWebAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.csprojAssemblyReference.cache
+D:\OfficeWorkingProjects\Working_AlleSyaWebAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.csproj.CoreCompileInputs.cache
+D:\OfficeWorkingProjects\Working_AlleSyaWebAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.AssemblyInfoInputs.cache
+D:\OfficeWorkingProjects\Working_AlleSyaWebAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.AssemblyInfo.cs
+D:\OfficeWorkingProjects\Working_AlleSyaWebAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.csproj.CopyComplete
+D:\OfficeWorkingProjects\Working_AlleSyaWebAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.dll
+D:\OfficeWorkingProjects\Working_AlleSyaWebAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.pdb
+D:\OfficeWorkingProjects\WebProjects\ESYAProject_WorkingUI&WEBAPI\Working_AlleSyaWebAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\bin\Debug\netcoreapp2.2\eSyaClinicalServices.IF.deps.json
+D:\OfficeWorkingProjects\WebProjects\ESYAProject_WorkingUI&WEBAPI\Working_AlleSyaWebAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\bin\Debug\netcoreapp2.2\eSyaClinicalServices.IF.dll
+D:\OfficeWorkingProjects\WebProjects\ESYAProject_WorkingUI&WEBAPI\Working_AlleSyaWebAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\bin\Debug\netcoreapp2.2\eSyaClinicalServices.IF.pdb
+D:\OfficeWorkingProjects\WebProjects\ESYAProject_WorkingUI&WEBAPI\Working_AlleSyaWebAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\bin\Debug\netcoreapp2.2\eSyaClinicalServices.DO.dll
+D:\OfficeWorkingProjects\WebProjects\ESYAProject_WorkingUI&WEBAPI\Working_AlleSyaWebAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\bin\Debug\netcoreapp2.2\eSyaClinicalServices.DO.pdb
+D:\OfficeWorkingProjects\WebProjects\ESYAProject_WorkingUI&WEBAPI\Working_AlleSyaWebAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.csprojAssemblyReference.cache
+D:\OfficeWorkingProjects\WebProjects\ESYAProject_WorkingUI&WEBAPI\Working_AlleSyaWebAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.csproj.CoreCompileInputs.cache
+D:\OfficeWorkingProjects\WebProjects\ESYAProject_WorkingUI&WEBAPI\Working_AlleSyaWebAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.AssemblyInfoInputs.cache
+D:\OfficeWorkingProjects\WebProjects\ESYAProject_WorkingUI&WEBAPI\Working_AlleSyaWebAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.AssemblyInfo.cs
+D:\OfficeWorkingProjects\WebProjects\ESYAProject_WorkingUI&WEBAPI\Working_AlleSyaWebAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.csproj.CopyComplete
+D:\OfficeWorkingProjects\WebProjects\ESYAProject_WorkingUI&WEBAPI\Working_AlleSyaWebAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.dll
+D:\OfficeWorkingProjects\WebProjects\ESYAProject_WorkingUI&WEBAPI\Working_AlleSyaWebAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.pdb
+D:\OfficeWorkingProjects\AllWEBAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\bin\Debug\netcoreapp2.2\eSyaClinicalServices.IF.deps.json
+D:\OfficeWorkingProjects\AllWEBAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\bin\Debug\netcoreapp2.2\eSyaClinicalServices.IF.dll
+D:\OfficeWorkingProjects\AllWEBAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\bin\Debug\netcoreapp2.2\eSyaClinicalServices.IF.pdb
+D:\OfficeWorkingProjects\AllWEBAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\bin\Debug\netcoreapp2.2\eSyaClinicalServices.DO.dll
+D:\OfficeWorkingProjects\AllWEBAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\bin\Debug\netcoreapp2.2\eSyaClinicalServices.DO.pdb
+D:\OfficeWorkingProjects\AllWEBAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.csprojAssemblyReference.cache
+D:\OfficeWorkingProjects\AllWEBAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.csproj.CoreCompileInputs.cache
+D:\OfficeWorkingProjects\AllWEBAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.AssemblyInfoInputs.cache
+D:\OfficeWorkingProjects\AllWEBAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.AssemblyInfo.cs
+D:\OfficeWorkingProjects\AllWEBAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.csproj.CopyComplete
+D:\OfficeWorkingProjects\AllWEBAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.dll
+D:\OfficeWorkingProjects\AllWEBAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.IF\eSyaClinicalServices.IF\obj\Debug\netcoreapp2.2\eSyaClinicalServices.IF.pdb
+>>>>>>> .r60

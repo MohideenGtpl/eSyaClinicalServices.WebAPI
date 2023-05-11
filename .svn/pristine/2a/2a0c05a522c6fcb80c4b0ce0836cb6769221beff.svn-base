@@ -1,0 +1,173 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using eSyaClinicalServices.IF;
+using eSyaClinicalServices.DO;
+using eSyaClinicalServices.DL.Entities;
+
+namespace eSyaClinicalServices.DL.Repository
+{
+    public class DoctorScheduleRepository : IDoctorScheduleRepository
+    {
+        public async Task<DO_ReturnParameter> InsertIntoDoctorSchedule(DO_DoctorSchedule obj)
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                using (var dbContext = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        var isDoctorScheduleExist = db.GtEsdos1.Where(x => x.BusinessKey == obj.BusinessKey && x.ClinicId == obj.ClinicID && x.SpecialtyId == obj.SpecialtyID && x.DoctorId == obj.DoctorId && x.ConsultationId == obj.ConsultationID && x.DayOfWeek == obj.DayOfWeek).Count();
+                        if (isDoctorScheduleExist > 0)
+                        {
+                            return new DO_ReturnParameter() { Status = false, Message = "Doctor Schedule already Exists for the Day" };
+                        }
+
+                        int serialNumber = db.GtEsdos1.Where(x => x.BusinessKey == obj.BusinessKey && x.ClinicId == obj.ClinicID && x.SpecialtyId == obj.SpecialtyID && x.DoctorId == obj.DoctorId && x.ConsultationId == obj.ConsultationID).Select(x => x.SerialNo).DefaultIfEmpty().Max() + 1;
+
+                        var dMasterSchedule = new GtEsdos1
+                        {
+                            BusinessKey = obj.BusinessKey,
+                            ConsultationId = obj.ConsultationID,
+                            ClinicId = obj.ClinicID,
+                            SpecialtyId = obj.SpecialtyID,
+                            DoctorId = obj.DoctorId,
+                            DayOfWeek = obj.DayOfWeek,
+                            SerialNo = serialNumber,
+                            ScheduleFromTime = obj.ScheduleFromTime,
+                            ScheduleToTime = obj.ScheduleToTime,
+                            NoOfPatients = obj.NoOfPatients,
+                            Week1 = obj.Week1,
+                            Week2 = obj.Week2,
+                            Week3 = obj.Week3,
+                            Week4 = obj.Week4,
+                            Week5 = obj.Week5,
+                            RoomNo = obj.RoomNo,
+                            ActiveStatus = obj.ActiveStatus,
+                            FormId = obj.FormID,
+                            CreatedBy = obj.UserID,
+                            CreatedOn = System.DateTime.Now,
+                            CreatedTerminal = obj.TerminalID,
+
+                        };
+                        db.GtEsdos1.Add(dMasterSchedule);
+
+                        await db.SaveChangesAsync();
+                        dbContext.Commit();
+                        return new DO_ReturnParameter() { Status = true, Message = "Doctor Schedule Created Successfully." };
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        dbContext.Rollback();
+                        throw new Exception(CommonMethod.GetValidationMessageFromException(ex));
+                    }
+                    catch (Exception ex)
+                    {
+                        dbContext.Rollback();
+                        throw ex;
+                    }
+                }
+            }
+        }
+
+        public async Task<DO_ReturnParameter> UpdateDoctorSchedule(DO_DoctorSchedule obj)
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                using (var dbContext = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        GtEsdos1 doctorSchedule = db.GtEsdos1.Where(x => x.BusinessKey == obj.BusinessKey && x.ClinicId == obj.ClinicID && x.SpecialtyId == obj.SpecialtyID && x.DoctorId == obj.DoctorId && x.ConsultationId == obj.ConsultationID && x.DayOfWeek == obj.DayOfWeek && x.SerialNo == obj.SerialNo).FirstOrDefault();
+                        if(doctorSchedule == null)
+                        {
+                            return new DO_ReturnParameter() { Status = false, Message = "Doctor Schedule doesn't Exists to update" };
+                        }
+                        else
+                        {
+                            doctorSchedule.DayOfWeek = obj.DayOfWeek;
+                            doctorSchedule.ScheduleFromTime = obj.ScheduleFromTime;
+                            doctorSchedule.ScheduleToTime = obj.ScheduleToTime;
+                            doctorSchedule.NoOfPatients = obj.NoOfPatients;
+                            doctorSchedule.Week1 = obj.Week1;
+                            doctorSchedule.Week2 = obj.Week2;
+                            doctorSchedule.Week3 = obj.Week3;
+                            doctorSchedule.Week4 = obj.Week4;
+                            doctorSchedule.Week5 = obj.Week5;
+                            doctorSchedule.RoomNo = obj.RoomNo;
+                            doctorSchedule.ActiveStatus = obj.ActiveStatus;
+                            doctorSchedule.ModifiedBy = obj.UserID;
+                            doctorSchedule.ModifiedOn = System.DateTime.Now;
+                            doctorSchedule.ModifiedTerminal = obj.TerminalID;
+
+                        };
+
+                        await db.SaveChangesAsync();
+                        dbContext.Commit();
+                        return new DO_ReturnParameter() { Status = true, Message = "Doctor Schedule Updated Successfully." };
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        dbContext.Rollback();
+                        throw new Exception(CommonMethod.GetValidationMessageFromException(ex));
+                    }
+                    catch (Exception ex)
+                    {
+                        dbContext.Rollback();
+                        throw ex;
+                    }
+                }
+            }
+        }
+
+        //public async Task<List<DO_DoctorSchedule>> GetDoctorScheduleList(int businessKey, int clinicId, int specialtyId, int doctorId)
+        //{
+        //    using (var db = new eSyaEnterprise())
+        //    {
+        //        try
+        //        {
+        //            var dc_ms = db.GtEsdos1
+        //                .GroupJoin(db.GtEcapcd.Where(x => x.CodeType == CodeTypeValue.DoctorClass),
+        //                d => new { d.DoctorClass },
+        //                a => new { DoctorClass = a.ApplicationCode },
+        //                (d, a) => new { d, a = a.FirstOrDefault() })
+        //                .GroupJoin(db.GtEcapcd.Where(x => x.CodeType == CodeTypeValue.DoctorCategory),
+        //                dd => new { dd.d.DoctorCategory },
+        //                aa => new { DoctorCategory = aa.ApplicationCode },
+        //                (dd, aa) => new { dd, aa = aa.FirstOrDefault() })
+        //                .Where(w => w.dd.d.ActiveStatus == true)
+        //                .AsNoTracking()
+        //                .Select(x => new DO_DoctorMaster
+        //                {
+        //                    DoctorId = x.dd.d.DoctorId,
+
+        //                    DoctorName = x.dd.d.DoctorName,
+        //                    DoctorShortName = x.dd.d.DoctorShortName,
+        //                    Gender = x.dd.d.Gender == "F" ? "Female" : "Male",
+        //                    Qualification = x.dd.d.Qualification,
+        //                    DoctorRegnNo = x.dd.d.DoctorRegnNo,
+        //                    MobileNumber = x.dd.d.MobileNumber,
+        //                    DoctorClass = x.dd.d.DoctorClass,
+        //                    DoctorClassDesc = x.dd.a != null ? x.dd.a.CodeDesc : string.Empty,
+        //                    DoctorCategory = x.dd.d.DoctorCategory,
+        //                    DoctorCategoryDesc = x.aa != null ? x.aa.CodeDesc : string.Empty,
+        //                    AllowConsultation = x.dd.d.AllowConsultation,
+        //                    IsRevenueShareApplicable = x.dd.d.IsRevenueShareApplicable,
+        //                    AllowSMS = x.dd.d.AllowSms,
+        //                    ActiveStatus = x.dd.d.ActiveStatus
+
+        //                }).OrderBy(x => x.DoctorName).ToListAsync();
+
+        //            return await dc_ms;
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            throw ex;
+        //        }
+        //    }
+        //}
+    }
+}

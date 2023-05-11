@@ -1,0 +1,223 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using eSyaClinicalServices.IF;
+using eSyaClinicalServices.DO;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace eSyaClinicalServices.WebAPI.Controllers
+{
+    [Route("api/[controller]/[action]")]
+    [ApiController]
+    public class DoctorMasterController : ControllerBase
+    {
+        private readonly IDoctorMasterRepository _DoctorMasterRepository;
+
+        public DoctorMasterController(IDoctorMasterRepository doctorMasterRepository)
+        {
+            _DoctorMasterRepository = doctorMasterRepository;
+        }
+
+        /// <summary>
+        /// Insert into Doctor Master Table
+        /// UI Reffered - Doctor Master,
+        /// </summary>
+        [HttpPost]
+        public async Task<IActionResult> InsertIntoDoctorMaster(DO_DoctorMaster obj)
+        {
+            var msg = await _DoctorMasterRepository.InsertIntoDoctorMaster(obj);
+            return Ok(msg);
+        }
+
+        /// <summary>
+        /// Update into Doctor Master Table
+        /// UI Reffered - Doctor Master,
+        /// </summary>
+        [HttpPost]
+        public async Task<IActionResult> UpdateDoctorMaster(DO_DoctorMaster obj)
+        {
+            var msg = await _DoctorMasterRepository.UpdateDoctorMaster(obj);
+            return Ok(msg);
+        }
+
+        /// <summary>
+        /// Get All Doctor Master List
+        /// UI Reffered - Doctor Master,
+        /// </summary>
+        [HttpGet]
+        public async Task<IActionResult> GetDoctorMasterList()
+        {
+            var msg = await _DoctorMasterRepository.GetDoctorMasterList();
+            return Ok(msg);
+        }
+
+        /// <summary>
+        /// Get All Doctor Master List
+        /// UI Reffered - Doctor Master,
+        /// </summary>
+        [HttpGet]
+        public async Task<IActionResult> GetDoctorMasterListForPrefix(string doctorNamePrefix)
+        {
+            var msg = await _DoctorMasterRepository.GetDoctorMasterListForPrefix(doctorNamePrefix);
+            return Ok(msg);
+        }
+
+        /// <summary>
+        /// Get Specific Doctor Master Data
+        /// UI Reffered - Doctor Master,
+        /// </summary>
+        [HttpGet]
+        public async Task<IActionResult> GetDoctorMaster(int doctorId)
+        {
+            var msg = await _DoctorMasterRepository.GetDoctorMaster(doctorId);
+            return Ok(msg);
+        }
+
+        /// <summary>
+        /// Active Or DeActive Doctor Master
+        /// UI Reffered - Doctor Master,
+        /// </summary>
+        [HttpGet]
+        public async Task<IActionResult> ActiveOrDeActiveDoctor(bool status, int doctorId)
+        {
+            var msg = await _DoctorMasterRepository.ActiveOrDeActiveDoctor(status,doctorId);
+            return Ok(msg);
+        }
+
+        /// <summary>
+        /// Get Doctor Business Link Data
+        /// UI Reffered - Doctor Business Link,
+        /// </summary>
+        [HttpGet]
+        public async Task<IActionResult> GetDoctorMasterBusinessList(int businessKey)
+        {
+            var msg = await _DoctorMasterRepository.GetDoctorMasterBusinessList(businessKey);
+            return Ok(msg);
+        }
+
+        /// <summary>
+        /// Insert/ Update into Doctor Business Link Table
+        /// UI Reffered - Doctor Business Link,
+        /// </summary>
+        [HttpPost]
+        public async Task<IActionResult> InsertIntoDoctorBusinessLink(List<DO_DoctorMaster> obj)
+        {
+            var msg = await _DoctorMasterRepository.InsertIntoDoctorBusinessLink(obj);
+            return Ok(msg);
+        }
+
+        /// <summary>
+        /// Get Business Doctor Link Data
+        /// UI Reffered - Doctor Master,
+        /// </summary>
+        [HttpGet]
+        public async Task<IActionResult> GetBusinessLocationDoctorList(int doctorId)
+        {
+            var msg = await _DoctorMasterRepository.GetBusinessLocationDoctorList(doctorId);
+            return Ok(msg);
+        }
+
+        /// <summary>
+        /// Insert/ Update into Doctor Business Link Table
+        /// UI Reffered - Doctor Master,
+        /// </summary>
+        [HttpPost]
+        public async Task<IActionResult> InsertIntoBusinessDoctorLink(List<DO_DoctorMaster> obj)
+        {
+            var msg = await _DoctorMasterRepository.InsertIntoBusinessDoctorLink(obj);
+            return Ok(msg);
+        }
+
+        /// <summary>
+        /// Get Business Specialty Link Data
+        /// UI Reffered - Doctor Master,
+        /// </summary>
+        [HttpGet]
+        public async Task<IActionResult> GetDoctorBusinessKey(int doctorId)
+        {
+            var msg = await _DoctorMasterRepository.GetDoctorBusinessKey(doctorId);
+            return Ok(msg);
+        }
+        /// <summary>
+        /// Get Business Keys by doctor Id for drop down
+        /// UI Reffered - Doctor Speciality,
+        /// </summary>
+        [HttpGet]
+        public async Task<IActionResult> GetDoctorLocationbyDoctorId(int doctorId)
+        {
+            var msg = await _DoctorMasterRepository.GetDoctorLocationbyDoctorId(doctorId);
+            return Ok(msg);
+        }
+        
+        /// <summary>
+        /// Get Business Specialty Link Data
+        /// UI Reffered - Doctor Master,
+        /// </summary>
+        [HttpGet]
+        public async Task<IActionResult> GetSpecialtyListByDoctorId(int doctorId)
+        {
+            var msg = await _DoctorMasterRepository.GetSpecialtyListByDoctorId(doctorId);
+            return Ok(msg);
+        }
+
+        /// <summary>
+        /// Insert into Doctor Specialty Link Table
+        /// UI Reffered - Doctor Master,
+        /// </summary>
+        [HttpPost]
+        public async Task<IActionResult> InsertDoctorSpecialtyLink(DO_SpecialtyDoctorLink obj)
+        {
+            var msg = await _DoctorMasterRepository.InsertDoctorSpecialtyLink(obj);
+            return Ok(msg);
+        }
+
+        /// <summary>
+        /// Update into Doctor Specialty Link Table
+        /// UI Reffered - Doctor Master,
+        /// </summary>
+        [HttpPost]
+        public async Task<IActionResult> UpdateDoctorSpecialtyLink(DO_SpecialtyDoctorLink obj)
+        {
+            var msg = await _DoctorMasterRepository.UpdateDoctorSpecialtyLink(obj);
+            return Ok(msg);
+        }
+
+        /// <summary>
+        /// Get Business Specialty Link Data
+        /// UI Reffered - Doctor Master,
+        /// </summary>
+        [HttpGet]
+        public async Task<IActionResult> GetSpecialtyListByBKeyDoctorId(int businessKey, int doctorId)
+        {
+            var msg = await _DoctorMasterRepository.GetSpecialtyListByBKeyDoctorId(businessKey, doctorId);
+            return Ok(msg);
+        }
+        #region Doctor Details
+        /// <summary>
+        /// Insert Or Update Doctor Doctor Details
+        /// UI Reffered - Doctor Details,
+        /// </summary>
+        [HttpPost]
+        public async Task<IActionResult> InsertOrUpdateIntoDoctordetails(Do_DoctorDetails obj)
+        {
+            var msg = await _DoctorMasterRepository.InsertOrUpdateIntoDoctordetails(obj);
+            return Ok(msg);
+        }
+
+        /// <summary>
+        /// Get Business Doctor Details by Doctor Id
+        /// UI Reffered - Doctor Details,
+        /// UI-Param-doctorId
+        /// </summary>
+        [HttpGet]
+        public async Task<IActionResult> GetDoctordetailsbydoctorId(int doctorId)
+        {
+            var do_details = await _DoctorMasterRepository.GetDoctordetailsbydoctorId(doctorId);
+            return Ok(do_details);
+        }
+        #endregion Doctor Details
+    }
+}

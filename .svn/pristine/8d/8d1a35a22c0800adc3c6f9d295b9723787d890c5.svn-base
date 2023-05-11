@@ -1,0 +1,210 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using eSyaClinicalServices.IF;
+using eSyaClinicalServices.DO;
+using eSyaClinicalServices.DL.Entities;
+
+namespace eSyaClinicalServices.DL.Repository
+{
+    public class DoctorMasterRepository : IDoctorMasterRepository
+    {
+        public async Task<DO_ReturnParameter> InsertIntoDoctorMaster(DO_DoctorMaster obj)
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                using (var dbContext = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        
+                        int maxDoctorId = db.GtHmdmcd.Select(d => d.DoctorId).DefaultIfEmpty().Max();
+                        int DocId = maxDoctorId + 1;
+
+                        var dMaster = new GtHmdmcd
+                        {
+                            DoctorId = DocId,
+                            DoctorName = obj.DoctorName.Trim(),
+                            DoctorShortName = obj.DoctorShortName.Trim(),
+                            Gender = obj.Gender,
+                            Qualification = obj.Qualification,
+                            DoctorRegnNo = obj.DoctorRegnNo,
+                            EmailId = obj.EMailId,
+                            DoctorClass = obj.DoctorClass,
+                            MobileNumber = obj.MobileNumber,
+                            DoctorCategory = obj.DoctorCategory,
+                            AllowConsultation = obj.AllowConsultation,
+                            IsRevenueShareApplicable = obj.IsRevenueShareApplicable,
+                            AllowSms = obj.AllowSMS,
+                            ActiveStatus = obj.ActiveStatus,
+                            CreatedBy = obj.UserID,
+                            CreatedOn = System.DateTime.Now,
+                            CreatedTerminal = obj.TerminalID,
+
+                        };
+                        db.GtHmdmcd.Add(dMaster);
+
+                        await db.SaveChangesAsync();
+                        dbContext.Commit();
+                        return new DO_ReturnParameter() { Status = true, Message = "Doctor Master Created Successfully." };
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        dbContext.Rollback();
+                        throw new Exception(CommonMethod.GetValidationMessageFromException(ex));
+                    }
+                    catch (Exception ex)
+                    {
+                        dbContext.Rollback();
+                        throw ex;
+                    }
+                }
+            }
+        }
+
+        public async Task<DO_ReturnParameter> UpdateDoctorMaster(DO_DoctorMaster obj)
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                using (var dbContext = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        GtHmdmcd dc_ms = db.GtHmdmcd.Where(w => w.DoctorId == obj.DoctorId).FirstOrDefault();
+                        if (dc_ms == null)
+                        {
+                            return new DO_ReturnParameter() { Status = false, Message = "Doctor Id does not exist." };
+                        }
+
+                        dc_ms.DoctorName = obj.DoctorName.Trim();
+                        dc_ms.DoctorShortName = obj.DoctorShortName;
+                        dc_ms.Gender = obj.Gender;
+                        dc_ms.Qualification = obj.Qualification;
+                        dc_ms.DoctorRegnNo = obj.DoctorRegnNo;
+                        dc_ms.MobileNumber = obj.MobileNumber;
+                        dc_ms.EmailId = obj.EMailId;
+                        dc_ms.DoctorClass = obj.DoctorClass;
+                        dc_ms.DoctorCategory = obj.DoctorCategory;
+                        dc_ms.AllowConsultation = obj.AllowConsultation;
+                        dc_ms.IsRevenueShareApplicable = obj.IsRevenueShareApplicable;
+                        dc_ms.AllowSms = obj.AllowSMS;
+                        dc_ms.ActiveStatus = obj.ActiveStatus;
+                        dc_ms.ModifiedBy = obj.UserID;
+                        dc_ms.ModifiedOn = System.DateTime.Now;
+                        dc_ms.ModifiedTerminal = obj.TerminalID;
+
+                        await db.SaveChangesAsync();
+                        dbContext.Commit();
+                        return new DO_ReturnParameter() { Status = true, Message = "Doctor Master Updated Successfully." };
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        dbContext.Rollback();
+                        throw new Exception(CommonMethod.GetValidationMessageFromException(ex));
+                    }
+                    catch (Exception ex)
+                    {
+                        dbContext.Rollback();
+                        throw ex;
+                    }
+                }
+            }
+        }
+
+        public async Task<List<DO_DoctorMaster>> GetDoctorMasterList()
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                try
+                {
+                    var dc_ms = db.GtHmdmcd
+                        .GroupJoin(db.GtEaapcd.Where(x => x.CodeType == CodeTypeValue.DoctorClass),
+                        d => new { d.DoctorClass },
+                        a => new { DoctorClass = a.ApplicationCode },
+                        (d, a) => new { d, a = a.FirstOrDefault() })
+                        .GroupJoin(db.GtEaapcd.Where(x => x.CodeType == CodeTypeValue.DoctorCategory),
+                        dd => new { dd.d.DoctorCategory },
+                        aa => new { DoctorCategory = aa.ApplicationCode },
+                        (dd, aa) => new { dd, aa = aa.FirstOrDefault() })
+                        .Where(w => w.dd.d.ActiveStatus == true)
+                        .Select(x => new DO_DoctorMaster
+                        {
+                            DoctorId = x.dd.d.DoctorId,
+
+                            DoctorName = x.dd.d.DoctorName,
+                            DoctorShortName = x.dd.d.DoctorShortName,
+                            Gender = x.dd.d.Gender == "F" ? "Female" : "Male",
+                            Qualification = x.dd.d.Qualification,
+                            DoctorRegnNo = x.dd.d.DoctorRegnNo,
+                            MobileNumber = x.dd.d.MobileNumber,
+                            DoctorClass = x.dd.d.DoctorClass,
+                            DoctorClassDesc = x.dd.a != null ? x.dd.a.CodeDesc : string.Empty,
+                            DoctorCategory = x.dd.d.DoctorCategory,
+                            DoctorCategoryDesc = x.aa != null ? x.aa.CodeDesc : string.Empty,
+                            AllowConsultation = x.dd.d.AllowConsultation,
+                            IsRevenueShareApplicable = x.dd.d.IsRevenueShareApplicable,
+                            AllowSMS = x.dd.d.AllowSms,
+                            ActiveStatus = x.dd.d.ActiveStatus
+
+                        }).OrderBy(x => x.DoctorName).ToListAsync();
+
+                    return await dc_ms;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        public async Task<DO_DoctorMaster> GetDoctorMaster(int doctorId)
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                try
+                {
+                    var dc_ms = db.GtHmdmcd
+                        .Join(db.GtEaapcd.Where(x => x.CodeType == CodeTypeValue.DoctorClass),
+                        d => new { d.DoctorClass },
+                        a => new { DoctorClass = a.ApplicationCode},
+                        (d,a) => new { d, a})
+                        .Join(db.GtEaapcd.Where(x => x.CodeType == CodeTypeValue.DoctorCategory),
+                        dd => new { dd.d.DoctorCategory},
+                        aa => new { DoctorCategory = aa.ApplicationCode },
+                        (dd, aa) => new { dd,aa})
+                        .Where(w => w.dd.d.DoctorId == doctorId)
+                        .Select(x => new DO_DoctorMaster
+                        {
+                            DoctorId = x.dd.d.DoctorId,
+                            DoctorName = x.dd.d.DoctorName,
+                            DoctorShortName = x.dd.d.DoctorShortName,
+                            Gender = x.dd.d.Gender,
+                            Qualification = x.dd.d.Qualification,
+                            EMailId = x.dd.d.EmailId,
+                            DoctorRegnNo = x.dd.d.DoctorRegnNo,
+                            MobileNumber = x.dd.d.MobileNumber,
+                            DoctorClass=x.dd.d.DoctorClass,
+                            DoctorClassDesc = x.dd.a.CodeDesc,
+                            DoctorCategory = x.dd.d.DoctorCategory,
+                            DoctorCategoryDesc = x.aa.CodeDesc,
+                            AllowConsultation = x.dd.d.AllowConsultation,
+                            IsRevenueShareApplicable = x.dd.d.IsRevenueShareApplicable,
+                            AllowSMS = x.dd.d.AllowSms,
+                            ActiveStatus = x.dd.d.ActiveStatus
+
+                        }).FirstOrDefaultAsync();
+
+                    return await dc_ms;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+    }
+}
+

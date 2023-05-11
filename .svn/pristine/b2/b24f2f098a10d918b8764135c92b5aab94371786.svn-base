@@ -1,0 +1,25 @@
+﻿using eSyaClinicalServices.DO;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace eSyaClinicalServices.IF
+{
+    public interface IClinicRepository
+    {
+        Task<DO_ReturnParameter> InsertUpdateOPClinicLink(List<DO_OPClinic> obj);
+
+        Task<List<DO_OPClinic>> GetClinicConsultantIdList(int businessKey);
+
+        Task<List<DO_DoctorClinic>> GetDoctorClinicLinkList(int businessKey, int specialtyId, int doctorId);
+
+        Task<DO_ReturnParameter> InsertUpdateDoctorClinicLink(List<DO_DoctorClinic> obj);
+
+        Task<List<DO_ClinicRoom>> GetClinicRoomListByBKeyFloorId(int businessKey, int floorId);
+
+        Task<DO_ReturnParameter> InsertIntoClinicRoomMaster(DO_ClinicRoom obj);
+
+        Task<DO_ReturnParameter> UpdateClinicRoomMaster(DO_ClinicRoom obj);
+    }
+}

@@ -1,0 +1,30 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+using eSyaClinicalServices.DO;
+
+namespace eSyaClinicalServices.IF
+{
+    public interface IDoctorMasterRepository
+    {
+        Task<DO_ReturnParameter> InsertIntoDoctorMaster(DO_DoctorMaster obj);
+        Task<DO_ReturnParameter> UpdateDoctorMaster(DO_DoctorMaster obj);
+        Task<List<DO_DoctorMaster>> GetDoctorMasterList();
+        Task<DO_DoctorMaster> GetDoctorMaster(int doctorId);
+        Task<List<DO_DoctorMaster>> GetDoctorMasterListForPrefix(string doctorNamePrefix);
+
+        Task<List<DO_DoctorMaster>> GetDoctorMasterBusinessList(int businessKey);
+        Task<DO_ReturnParameter> InsertIntoDoctorBusinessLink(List<DO_DoctorMaster> obj);
+
+        Task<List<DO_BusinessLocation>> GetBusinessLocationDoctorList(int doctorId);
+        Task<DO_ReturnParameter> InsertIntoBusinessDoctorLink(List<DO_DoctorMaster> obj);
+        Task<List<DO_BusinessLocation>> GetDoctorBusinessKey(int doctorId);
+        Task<List<DO_BusinessLocation>> GetDoctorLocationbyDoctorId(int doctorId);
+
+        Task<List<DO_SpecialtyDoctorLink>> GetSpecialtyListByDoctorId(int doctorId);
+        Task<DO_ReturnParameter> InsertDoctorSpecialtyLink(DO_SpecialtyDoctorLink obj);
+        Task<DO_ReturnParameter> UpdateDoctorSpecialtyLink(DO_SpecialtyDoctorLink obj);
+        Task<List<DO_SpecialtyDoctorLink>> GetSpecialtyListByBKeyDoctorId(int businessKey, int doctorId);
+    }
+}

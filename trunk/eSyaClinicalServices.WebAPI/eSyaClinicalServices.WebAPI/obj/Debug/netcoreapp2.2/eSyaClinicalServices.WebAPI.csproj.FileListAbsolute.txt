@@ -1,0 +1,62 @@
+<<<<<<< .mine
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\bin\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.deps.json
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\bin\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.runtimeconfig.json
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\bin\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.runtimeconfig.dev.json
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\bin\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.dll
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\bin\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.pdb
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\bin\Debug\netcoreapp2.2\eSyaClinicalServices.DL.dll
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\bin\Debug\netcoreapp2.2\eSyaClinicalServices.DO.dll
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\bin\Debug\netcoreapp2.2\eSyaClinicalServices.IF.dll
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\bin\Debug\netcoreapp2.2\eSyaClinicalServices.DL.pdb
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\bin\Debug\netcoreapp2.2\eSyaClinicalServices.DO.pdb
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\bin\Debug\netcoreapp2.2\eSyaClinicalServices.IF.pdb
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\obj\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.csprojAssemblyReference.cache
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\obj\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.csproj.CoreCompileInputs.cache
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\obj\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.RazorAssemblyInfo.cache
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\obj\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.RazorAssemblyInfo.cs
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\obj\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.AssemblyInfoInputs.cache
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\obj\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.AssemblyInfo.cs
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\obj\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.RazorTargetAssemblyInfo.cache
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\obj\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.csproj.CopyComplete
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\obj\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.dll
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\obj\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.pdb
+||||||| .r58
+D:\eSya Enterprise\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\bin\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.deps.json
+D:\eSya Enterprise\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\bin\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.runtimeconfig.json
+D:\eSya Enterprise\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\bin\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.runtimeconfig.dev.json
+D:\eSya Enterprise\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\bin\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.dll
+D:\eSya Enterprise\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\obj\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.csprojAssemblyReference.cache
+D:\eSya Enterprise\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\obj\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.csproj.CoreCompileInputs.cache
+D:\eSya Enterprise\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\obj\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.RazorAssemblyInfo.cache
+D:\eSya Enterprise\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\obj\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.RazorAssemblyInfo.cs
+D:\eSya Enterprise\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\obj\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.AssemblyInfoInputs.cache
+D:\eSya Enterprise\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\obj\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.AssemblyInfo.cs
+D:\eSya Enterprise\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\obj\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.RazorTargetAssemblyInfo.cache
+D:\eSya Enterprise\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\bin\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.pdb
+D:\eSya Enterprise\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\obj\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.dll
+D:\eSya Enterprise\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\obj\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.pdb
+=======
+D:\OfficeWorkingProjects\WebProjects\ESYAProject_WorkingUI&WEBAPI\Working_AlleSyaWebAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\obj\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.csprojAssemblyReference.cache
+D:\OfficeWorkingProjects\WebProjects\ESYAProject_WorkingUI&WEBAPI\Working_AlleSyaWebAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\obj\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.csproj.CoreCompileInputs.cache
+D:\OfficeWorkingProjects\AllWEBAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\bin\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.deps.json
+D:\OfficeWorkingProjects\AllWEBAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\bin\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.runtimeconfig.json
+D:\OfficeWorkingProjects\AllWEBAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\bin\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.runtimeconfig.dev.json
+D:\OfficeWorkingProjects\AllWEBAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\bin\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.dll
+D:\OfficeWorkingProjects\AllWEBAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\bin\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.pdb
+D:\OfficeWorkingProjects\AllWEBAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\bin\Debug\netcoreapp2.2\eSyaClinicalServices.DL.dll
+D:\OfficeWorkingProjects\AllWEBAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\bin\Debug\netcoreapp2.2\eSyaClinicalServices.DO.dll
+D:\OfficeWorkingProjects\AllWEBAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\bin\Debug\netcoreapp2.2\eSyaClinicalServices.IF.dll
+D:\OfficeWorkingProjects\AllWEBAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\bin\Debug\netcoreapp2.2\eSyaClinicalServices.DL.pdb
+D:\OfficeWorkingProjects\AllWEBAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\bin\Debug\netcoreapp2.2\eSyaClinicalServices.DO.pdb
+D:\OfficeWorkingProjects\AllWEBAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\bin\Debug\netcoreapp2.2\eSyaClinicalServices.IF.pdb
+D:\OfficeWorkingProjects\AllWEBAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\obj\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.csprojAssemblyReference.cache
+D:\OfficeWorkingProjects\AllWEBAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\obj\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.csproj.CoreCompileInputs.cache
+D:\OfficeWorkingProjects\AllWEBAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\obj\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.RazorAssemblyInfo.cache
+D:\OfficeWorkingProjects\AllWEBAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\obj\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.RazorAssemblyInfo.cs
+D:\OfficeWorkingProjects\AllWEBAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\obj\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.AssemblyInfoInputs.cache
+D:\OfficeWorkingProjects\AllWEBAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\obj\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.AssemblyInfo.cs
+D:\OfficeWorkingProjects\AllWEBAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\obj\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.RazorTargetAssemblyInfo.cache
+D:\OfficeWorkingProjects\AllWEBAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\obj\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.csproj.CopyComplete
+D:\OfficeWorkingProjects\AllWEBAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\obj\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.dll
+D:\OfficeWorkingProjects\AllWEBAPI\eSyaEnterprise_ClinicalServices\eSyaClinicalServices.WebAPI\eSyaClinicalServices.WebAPI\obj\Debug\netcoreapp2.2\eSyaClinicalServices.WebAPI.pdb
+>>>>>>> .r60

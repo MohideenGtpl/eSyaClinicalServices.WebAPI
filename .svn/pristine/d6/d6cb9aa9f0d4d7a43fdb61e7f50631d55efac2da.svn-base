@@ -1,0 +1,469 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using eSyaClinicalServices.IF;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using eSyaClinicalServices.DO;
+using eSyaClinicalServices.DL.Entities;
+
+namespace eSyaClinicalServices.DL.Repository
+{
+    public class SpecialtyRepository : ISpecialtyRepository
+    {
+        #region Specialty Business Link
+        public async Task<DO_ReturnParameter> InsertSpecialtyClinicLink(DO_SpecialtyClinicLink obj)
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                using (var dbContext = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+
+                        var sMaster = new GtEsspbl
+                        {
+                            BusinessKey = obj.BusinessKey,
+                            SpecialtyId = obj.SpecialtyID,
+                            ClinicId = obj.ClinicID,
+                            ActiveStatus = obj.ActiveStatus,
+                            FormId = obj.FormId,
+                            CreatedBy = obj.UserID,
+                            CreatedOn = System.DateTime.Now,
+                            CreatedTerminal = obj.TerminalID,
+
+                        };
+                        db.GtEsspbl.Add(sMaster);
+
+                        await db.SaveChangesAsync();
+                        dbContext.Commit();
+                        return new DO_ReturnParameter() { Status = true, Message = "Specialty Code Linked Successfully." };
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        dbContext.Rollback();
+                        throw new Exception(CommonMethod.GetValidationMessageFromException(ex));
+                    }
+                    catch (Exception ex)
+                    {
+                        dbContext.Rollback();
+                        throw ex;
+                    }
+                }
+            }
+        }
+
+        public async Task<DO_ReturnParameter> InsertSpecialtyClinicLinkList(List<DO_SpecialtyClinicLink> obj, List<DO_SpecialtyParameter> objPar)
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                using (var dbContext = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        foreach (DO_SpecialtyClinicLink sm in obj)
+                        {
+                            GtEsspbl spBl = db.GtEsspbl.Where(x => x.BusinessKey == sm.BusinessKey && x.SpecialtyId == sm.SpecialtyID && x.ClinicId == sm.ClinicID).FirstOrDefault();
+                            if (spBl != null)
+                            {
+                                spBl.ActiveStatus = sm.ActiveStatus;
+                                spBl.ModifiedBy = sm.UserID;
+                                spBl.ModifiedOn = System.DateTime.Now;
+                                spBl.ModifiedTerminal = sm.TerminalID;
+                            }
+                            else
+                            {
+                                var sMaster = new GtEsspbl
+                                {
+                                    BusinessKey = sm.BusinessKey,
+                                    SpecialtyId = sm.SpecialtyID,
+                                    ClinicId = sm.ClinicID,
+                                    ActiveStatus = sm.ActiveStatus,
+                                    FormId = sm.FormId,
+                                    CreatedBy = sm.UserID,
+                                    CreatedOn = System.DateTime.Now,
+                                    CreatedTerminal = sm.TerminalID,
+
+                                };
+                                db.GtEsspbl.Add(sMaster);
+                            }
+                        }
+
+                        foreach (DO_SpecialtyParameter sm in objPar)
+                        {
+                            GtEssppa sPar = db.GtEssppa.Where(x => x.BusinessKey == sm.BusinessKey && x.SpecialtyId == sm.SpecialtyID && x.ParameterId == sm.ParameterID).FirstOrDefault();
+                            if (sPar != null)
+                            {
+                                sPar.ParmAction = sm.ParmAction;
+                                sPar.ParmDesc = sm.ParmDesc;
+                                sPar.ParmPerc = sm.ParmPerc;
+                                sPar.ParmValue = sm.ParmValue;
+                            }
+                            else
+                            {
+                                var sMaster = new GtEssppa
+                                {
+                                    BusinessKey = sm.BusinessKey,
+                                    SpecialtyId = sm.SpecialtyID,
+                                    ParameterId = sm.ParameterID,
+                                    ParmPerc = sm.ParmPerc,
+                                    ParmAction = sm.ParmAction,
+                                    ParmDesc = sm.ParmDesc,
+                                    ParmValue = sm.ParmValue,
+                                    ActiveStatus = sm.ActiveStatus,
+                                    FormId = sm.FormId,
+                                    CreatedBy = sm.UserID,
+                                    CreatedOn = System.DateTime.Now,
+                                    CreatedTerminal = sm.TerminalID,
+
+                                };
+                                db.GtEssppa.Add(sMaster);
+                            }
+                        }
+
+                        await db.SaveChangesAsync();
+                        dbContext.Commit();
+                        return new DO_ReturnParameter() { Status = true, Message = "Specialty Code Linked Successfully." };
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        dbContext.Rollback();
+                        throw new Exception(CommonMethod.GetValidationMessageFromException(ex));
+                    }
+                    catch (Exception ex)
+                    {
+                        dbContext.Rollback();
+                        throw ex;
+                    }
+                }
+            }
+        }
+
+        public async Task<DO_ReturnParameter> UpdateSpecialtyClinicLink(DO_SpecialtyClinicLink obj)
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                using (var dbContext = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        GtEsspbl sp_ms = db.GtEsspbl.Where(w => w.SpecialtyId == obj.SpecialtyID && w.BusinessKey == obj.BusinessKey && w.ClinicId == obj.ClinicID).FirstOrDefault();
+                        if (sp_ms == null)
+                        {
+                            return new DO_ReturnParameter() { Status = false, Message = "Specialty Id does not exist." };
+                        }
+
+                        sp_ms.ActiveStatus = obj.ActiveStatus;
+                        sp_ms.ModifiedBy = obj.UserID;
+                        sp_ms.ModifiedOn = System.DateTime.Now;
+                        sp_ms.ModifiedTerminal = obj.TerminalID;
+
+                        await db.SaveChangesAsync();
+                        dbContext.Commit();
+                        return new DO_ReturnParameter() { Status = true, Message = "Specialty Link Updated Successfully." };
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        dbContext.Rollback();
+                        throw new Exception(CommonMethod.GetValidationMessageFromException(ex));
+                    }
+                    catch (Exception ex)
+                    {
+                        dbContext.Rollback();
+                        throw ex;
+                    }
+                }
+            }
+        }
+
+        public async Task<List<DO_SpecialtyClinicLink>> GetSpecialtyClinicList(int businessKey)
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                try
+                {
+                    var sp_ms = db.GtEsspcd
+                        .GroupJoin(db.GtEsspbl.Where(x => x.BusinessKey == businessKey),
+                        s => new {s.SpecialtyId},
+                        b => new {b.SpecialtyId},
+                        (s,b) => new {s, b = b.FirstOrDefault() }).DefaultIfEmpty()
+                        .Where(w => w.s.ActiveStatus == true)
+                        .AsNoTracking()
+                        .Select(x => new DO_SpecialtyClinicLink
+                        {
+                            BusinessKey = x.b != null ? x.b.BusinessKey : 0,
+                            SpecialtyID = x.s.SpecialtyId,
+                            SpecialtyDesc = x.s.SpecialtyDesc,
+                            ClinicID = x.b != null ? x.b.ClinicId : 0,
+                            ActiveStatus = x.b != null ? x.b.ActiveStatus : false
+
+                        }).OrderBy(x => x.SpecialtyDesc).ToListAsync();
+
+                    return await sp_ms;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        public async Task<List<DO_SpecialtyClinicLink>> GetSpecialtyListForBusinessKey(int businessKey)
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                try
+                {
+                    var sp_ms = db.GtEsspcd
+                        .Join(db.GtEsspbl,
+                        s => new { s.SpecialtyId },
+                        b => new { b.SpecialtyId },
+                        (s, b) => new { s, b})
+                        .Where(w => w.b.BusinessKey == businessKey && w.s.ActiveStatus && w.b.ActiveStatus)
+                        .AsNoTracking()
+                        .Select(x => new DO_SpecialtyClinicLink
+                        {
+                            SpecialtyID = x.s.SpecialtyId,
+                            SpecialtyDesc = x.s.SpecialtyDesc,
+                        
+                        })
+                        .GroupBy(y => y.SpecialtyID, (key, grp) => grp.FirstOrDefault())
+                        .OrderBy(x => x.SpecialtyDesc).ToListAsync();
+
+                    return await sp_ms;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        public async Task<List<DO_SpecialtyClinicLink>> GetSpecialtyClinicLinkList(int businessKey, int specialtyId)
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                try
+                {
+                    var sp_ms = db.GtEcapcd
+                        .GroupJoin(db.GtEsspbl.Where(w => w.BusinessKey == businessKey && w.SpecialtyId == specialtyId),
+                        a => new { a.ApplicationCode },
+                        b => new { ApplicationCode = b.ClinicId },
+                        (a, b) => new { a, b = b.FirstOrDefault() }).DefaultIfEmpty()
+                        .Where(w => w.a.CodeType == CodeTypeValue.Clinic && w.a.ActiveStatus)
+                        .AsNoTracking()
+                        .Select(x => new DO_SpecialtyClinicLink
+                        {
+                            ClinicID = x.a.ApplicationCode,
+                            ClinicDesc = x.a.CodeDesc,
+                            ActiveStatus = x.b != null ? x.b.ActiveStatus : false
+
+                        }).OrderBy(x => x.ClinicDesc).ToListAsync();
+
+                    return await sp_ms;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        //public async Task<List<DO_Parameters>> GetSpecialtyParameterList(int businessKey, int specialtyId)
+        //{
+        //    using (var db = new eSyaEnterprise())
+        //    {
+        //        try
+        //        {
+        //            var sp_ms = db.GtEssppa
+        //                .Where(w => w.SpecialtyId == specialtyId && w.BusinessKey == businessKey && w.ActiveStatus)
+        //                .AsNoTracking()
+        //                .Select(x => new DO_Parameters
+        //                {
+        //                    ParameterID = x.ParameterId,
+        //                    ParameterValue = x.ParmValue > 0 ? x.ParmValue.ToString() : x.ParmDesc != string.Empty ? x.ParmDesc : x.ParmAction ? x.ParmAction.ToString() : x.ParmPerc.ToString()
+
+        //                }).ToListAsync();
+
+        //            return await sp_ms;
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            throw ex;
+        //        }
+        //    }
+        //}
+
+        public async Task<List<DO_SpecialtyParameter>> GetSpecialtyParameterList(int businessKey, int specialtyId)
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                try
+                {
+                    var sp_ms = db.GtEssppa
+                        .Where(w => w.SpecialtyId == specialtyId && w.BusinessKey == businessKey && w.ActiveStatus)
+                        .AsNoTracking()
+                        .Select(x => new DO_SpecialtyParameter
+                        {
+                            ParameterID = x.ParameterId,
+                            ParmAction = x.ParmAction,
+                            ParmDesc = x.ParmDesc,
+                            ParmValue = x.ParmValue,
+                            ParmPerc =x.ParmPerc
+
+                        }).ToListAsync();
+
+                    return await sp_ms;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+        #endregion
+
+        #region Specialty Doctor Link
+        public async Task<DO_ReturnParameter> InsertSpecialtyDoctorLinkList(List<DO_SpecialtyDoctorLink> obj)
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                using (var dbContext = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        foreach (DO_SpecialtyDoctorLink sm in obj)
+                        {
+                            GtEsspdl spDl = db.GtEsspdl.Where(x => x.BusinessKey == sm.BusinessKey && x.SpecialtyId == sm.SpecialtyID && x.ClinicId == sm.ClinicID && x.DoctorId == sm.DoctorID).FirstOrDefault();
+                            if (spDl != null)
+                            {
+                                spDl.ActiveStatus = sm.ActiveStatus;
+                                spDl.ModifiedBy = sm.UserID;
+                                spDl.ModifiedOn = System.DateTime.Now;
+                                spDl.ModifiedTerminal = sm.TerminalID;
+                            }
+                            else if(sm.ActiveStatus)
+                            {
+                                var sMaster = new GtEsspdl
+                                {
+                                    BusinessKey = sm.BusinessKey,
+                                    SpecialtyId = sm.SpecialtyID,
+                                    ClinicId = sm.ClinicID,
+                                    DoctorId = sm.DoctorID,
+                                    ActiveStatus = sm.ActiveStatus,
+                                    FormId = sm.FormId,
+                                    CreatedBy = sm.UserID,
+                                    CreatedOn = System.DateTime.Now,
+                                    CreatedTerminal = sm.TerminalID,
+
+                                };
+                                db.GtEsspdl.Add(sMaster);
+                            }
+                        }
+
+                        await db.SaveChangesAsync();
+                        dbContext.Commit();
+                        return new DO_ReturnParameter() { Status = true, Message = "Doctor Name Linked with Specialty Successfully." };
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        dbContext.Rollback();
+                        throw new Exception(CommonMethod.GetValidationMessageFromException(ex));
+                    }
+                    catch (Exception ex)
+                    {
+                        dbContext.Rollback();
+                        throw ex;
+                    }
+                }
+            }
+        }
+
+        public async Task<DO_ReturnParameter> UpdateSpecialtyDoctorLink(DO_SpecialtyDoctorLink obj)
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                using (var dbContext = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        GtEsspdl sp_ms = db.GtEsspdl.Where(w => w.SpecialtyId == obj.SpecialtyID && w.BusinessKey == obj.BusinessKey && w.ClinicId == obj.ClinicID && w.DoctorId == obj.DoctorID).FirstOrDefault();
+                        if (sp_ms == null)
+                        {
+                            return new DO_ReturnParameter() { Status = false, Message = "Doctor Id does not exist." };
+                        }
+
+                        sp_ms.ActiveStatus = obj.ActiveStatus;
+                        sp_ms.ModifiedBy = obj.UserID;
+                        sp_ms.ModifiedOn = System.DateTime.Now;
+                        sp_ms.ModifiedTerminal = obj.TerminalID;
+
+                        await db.SaveChangesAsync();
+                        dbContext.Commit();
+                        return new DO_ReturnParameter() { Status = true, Message = "Doctor Link Updated Successfully." };
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        dbContext.Rollback();
+                        throw new Exception(CommonMethod.GetValidationMessageFromException(ex));
+                    }
+                    catch (Exception ex)
+                    {
+                        dbContext.Rollback();
+                        throw ex;
+                    }
+                }
+            }
+        }
+
+        public async Task<List<DO_SpecialtyDoctorLink>> GetSpecialtyDoctorLinkList(int businessKey, int specialtyId)
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                try
+                {
+                    var sp_ms = db.GtEsdocd
+                        .Join(db.GtEsdobl,
+                        d => new {d.DoctorId},
+                        b => new {b.DoctorId},
+                        (d,b) => new {d,b}
+                        )
+                        .Join(db.GtEsspbl.Where(w => w.BusinessKey == businessKey && w.SpecialtyId == specialtyId && w.ActiveStatus),
+                        dd => new { dd.b.BusinessKey},
+                        sp => new { sp.BusinessKey},
+                        (dd, sp) => new {dd, sp}
+                        )
+                        .Join(db.GtEcapcd.Where(w => w.CodeType == CodeTypeValue.Clinic),
+                        spp => new {spp.sp.ClinicId},
+                        ac => new { ClinicId = ac.ApplicationCode},
+                        (spp, ac) => new {spp, ac}
+                        )
+                        .GroupJoin(db.GtEsspdl.Where(w => w.BusinessKey == businessKey && w.SpecialtyId == specialtyId),
+                        ddd => new { ddd.spp.dd.d.DoctorId, ddd.spp.sp.ClinicId },
+                        spd => new { spd.DoctorId, spd.ClinicId },
+                        (ddd, spd) => new { ddd, spd = spd.FirstOrDefault() }).DefaultIfEmpty()
+                        .Where(w => w.ddd.spp.dd.b.BusinessKey == businessKey && w.ddd.spp.dd.d.ActiveStatus && w.ddd.spp.dd.b.ActiveStatus)
+                        .AsNoTracking()
+                        .Select(x => new DO_SpecialtyDoctorLink
+                        {
+                            DoctorID = x.ddd.spp.dd.d.DoctorId,
+                            DoctorName = x.ddd.spp.dd.d.DoctorName,
+                            ClinicID = x.ddd.spp.sp != null ? x.ddd.spp.sp.ClinicId : 0,
+                            ClinicDesc = x.ddd.ac != null? x.ddd.ac.CodeDesc: string.Empty,
+                            ActiveStatus = x.spd != null ? x.spd.ActiveStatus : false
+
+                        }).OrderBy(x => x.DoctorName).ToListAsync();
+
+                    return await sp_ms;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        #endregion
+    }
+}

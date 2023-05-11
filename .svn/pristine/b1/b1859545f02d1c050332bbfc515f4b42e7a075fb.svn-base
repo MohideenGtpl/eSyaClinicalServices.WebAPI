@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+using eSyaClinicalServices.DO;
+
+namespace eSyaClinicalServices.IF
+{
+    public interface IDoctorScheduleRepository
+    {
+        Task<DO_ReturnParameter> InsertIntoDoctorSchedule(DO_DoctorSchedule obj);
+        Task<DO_ReturnParameter> UpdateDoctorSchedule(DO_DoctorSchedule obj);
+    }
+}

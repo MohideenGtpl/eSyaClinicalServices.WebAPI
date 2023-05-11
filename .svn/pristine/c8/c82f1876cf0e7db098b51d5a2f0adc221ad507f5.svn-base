@@ -1,0 +1,134 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using eSyaClinicalServices.IF;
+using eSyaClinicalServices.DO;
+
+namespace eSyaClinicalServices.WebAPI.Controllers
+{
+    [Route("api/[controller]/[action]")]
+    [ApiController]
+    public class SpecialtyController : ControllerBase
+    {
+        private readonly ISpecialtyRepository _SpecialtyRepository;
+
+        public SpecialtyController(ISpecialtyRepository specialtyRepository)
+        {
+            _SpecialtyRepository = specialtyRepository;
+        }
+
+        /// <summary>
+        /// Insert into Specialty Business Link Table
+        /// UI Reffered - Specialty Business Link,
+        /// </summary>
+        [HttpPost]
+        public async Task<IActionResult> InsertSpecialtyClinicLink(DO_SpecialtyClinicLink obj)
+        {
+            var msg = await _SpecialtyRepository.InsertSpecialtyClinicLink(obj);
+            return Ok(msg);
+        }
+
+        /// <summary>
+        /// Insert List into Specialty Business Link Table
+        /// UI Reffered - Specialty Business Link,
+        /// </summary>
+        [HttpPost]
+        public async Task<IActionResult> InsertSpecialtyClinicLinkList(DO_SpecialtyBusiness objBus)
+        {
+            List<DO_SpecialtyClinicLink> obj = objBus.SpecialtyClinic;
+            List<DO_SpecialtyParameter> objPar = objBus.SpecialtyParam;
+
+            var msg = await _SpecialtyRepository.InsertSpecialtyClinicLinkList(obj, objPar);
+            return Ok(msg);
+        }
+
+        /// <summary>
+        /// Update into Specialty Business Link Table
+        /// UI Reffered - Specialty Business Link,
+        /// </summary>
+        [HttpPost]
+        public async Task<IActionResult> UpdateSpecialtyClinicLink(DO_SpecialtyClinicLink obj)
+        {
+            var msg = await _SpecialtyRepository.UpdateSpecialtyClinicLink(obj);
+            return Ok(msg);
+        }
+
+        /// <summary>
+        /// Get All Specialty Clinic List
+        /// UI Reffered - Specialty Business Link,
+        /// </summary>
+        [HttpGet]
+        public async Task<IActionResult> GetSpecialtyClinicList(int businessKey)
+        {
+            var msg = await _SpecialtyRepository.GetSpecialtyClinicList(businessKey);
+            return Ok(msg);
+        }
+
+        /// <summary>
+        /// Get Distinct Specialty List For Business Key
+        /// </summary>
+        [HttpGet]
+        public async Task<IActionResult> GetSpecialtyListForBusinessKey(int businessKey)
+        {
+            var msg = await _SpecialtyRepository.GetSpecialtyListForBusinessKey(businessKey);
+            return Ok(msg);
+        }
+
+        /// <summary>
+        /// Get All Specialty Clinic Link List
+        /// UI Reffered - Specialty Business Link,
+        /// </summary>
+        [HttpGet]
+        public async Task<IActionResult> GetSpecialtyClinicLinkList(int businessKey, int specialtyId)
+        {
+            var msg = await _SpecialtyRepository.GetSpecialtyClinicLinkList(businessKey, specialtyId);
+            return Ok(msg);
+        }
+
+        /// <summary>
+        /// Get All Specialty Parameter List
+        /// UI Reffered - Specialty Business Link,
+        /// </summary>
+        [HttpGet]
+        public async Task<IActionResult> GetSpecialtyParameterList(int businessKey, int specialtyId)
+        {
+            var msg = await _SpecialtyRepository.GetSpecialtyParameterList(businessKey, specialtyId);
+            return Ok(msg);
+        }
+
+        /// <summary>
+        /// Insert List into Specialty Doctor Link Table
+        /// UI Reffered - Specialty Doctor Link,
+        /// </summary>
+        [HttpPost]
+        public async Task<IActionResult> InsertSpecialtyDoctorLinkList(List<DO_SpecialtyDoctorLink> obj)
+        {
+            var msg = await _SpecialtyRepository.InsertSpecialtyDoctorLinkList(obj);
+            return Ok(msg);
+        }
+
+        /// <summary>
+        /// Update into Specialty Doctor Link Table
+        /// UI Reffered - Specialty Doctor Link,
+        /// </summary>
+        [HttpPost]
+        public async Task<IActionResult> UpdateSpecialtyDoctorLink(DO_SpecialtyDoctorLink obj)
+        {
+            var msg = await _SpecialtyRepository.UpdateSpecialtyDoctorLink(obj);
+            return Ok(msg);
+        }
+
+        /// <summary>
+        /// Get All Specialty Doctor Link List
+        /// UI Reffered - Specialty Business Link,
+        /// </summary>
+        [HttpGet]
+        public async Task<IActionResult> GetSpecialtyDoctorLinkList(int businessKey, int specialtyId)
+        {
+            var msg = await _SpecialtyRepository.GetSpecialtyDoctorLinkList(businessKey, specialtyId);
+            return Ok(msg);
+        }
+    }
+}

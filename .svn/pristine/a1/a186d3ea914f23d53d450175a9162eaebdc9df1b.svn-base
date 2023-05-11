@@ -1,0 +1,747 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using eSyaClinicalServices.IF;
+using eSyaClinicalServices.DO;
+using eSyaClinicalServices.DL.Entities;
+
+namespace eSyaClinicalServices.DL.Repository
+{
+    public class DoctorMasterRepository : IDoctorMasterRepository
+    {
+        #region Doctor Master
+        public async Task<DO_ReturnParameter> InsertIntoDoctorMaster(DO_DoctorMaster obj)
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                using (var dbContext = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        var isDoctorExist = db.GtEsdocd.Where(x => x.DoctorName.ToUpper().Trim() == obj.DoctorName.ToUpper().Trim()).Count();
+                        if(isDoctorExist>0)
+                        {
+                            return new DO_ReturnParameter() { Status = false, Message = "Doctor Name already Exists" };
+                        }
+
+                        isDoctorExist = db.GtEsdocd.Where(x => x.DoctorShortName.ToUpper().Trim() == obj.DoctorShortName.ToUpper().Trim()).Count();
+                        if (isDoctorExist > 0)
+                        {
+                            return new DO_ReturnParameter() { Status = false, Message = "Doctor Short Name already Exists" };
+                        }
+                        if(!string.IsNullOrEmpty(obj.MobileNumber) && obj.MobileNumber != "0")
+                        {
+                            var isMobileNoExist = db.GtEsdocd.Where(x => x.MobileNumber.Trim() == obj.MobileNumber.Trim() && x.ActiveStatus).Count();
+                            if(isMobileNoExist>0)
+                            {
+                                return new DO_ReturnParameter() { Status = false, Message = "Mobile number entered is already Exists" };
+                            }
+                        }
+                        if (!string.IsNullOrEmpty(obj.EMailId))
+                        {
+                            var isEmailIdExist = db.GtEsdocd.Where(x => x.EmailId.Trim() == obj.EMailId.Trim() && x.ActiveStatus).Count();
+                            if (isEmailIdExist > 0)
+                            {
+                                return new DO_ReturnParameter() { Status = false, Message = "EMail id entered is already Exists" };
+                            }
+                        }
+
+                        int maxDoctorId = db.GtEsdocd.Select(d => d.DoctorId).DefaultIfEmpty().Max();
+                        int DocId = maxDoctorId + 1;
+
+                        var dMaster = new GtEsdocd
+                        {
+                            DoctorId = DocId,
+                            DoctorName = obj.DoctorName.Trim(),
+                            DoctorShortName = obj.DoctorShortName.Trim(),
+                            Gender = obj.Gender,
+                            Qualification = obj.Qualification,
+                            DoctorRegnNo = obj.DoctorRegnNo,
+                            EmailId = obj.EMailId,
+                            DoctorClass = obj.DoctorClass,
+                            Isdcode = obj.ISDCode,
+                            MobileNumber = obj.MobileNumber,
+                            DoctorCategory = obj.DoctorCategory,
+                            AllowConsultation = obj.AllowConsultation,
+                            IsRevenueShareApplicable = obj.IsRevenueShareApplicable,
+                            AllowSms = obj.AllowSMS,
+                            ActiveStatus = obj.ActiveStatus,
+                            FormId = obj.FormID,
+                            CreatedBy = obj.UserID,
+                            CreatedOn = System.DateTime.Now,
+                            CreatedTerminal = obj.TerminalID,
+
+                        };
+                        db.GtEsdocd.Add(dMaster);
+
+                        await db.SaveChangesAsync();
+                        dbContext.Commit();
+                        return new DO_ReturnParameter() { Status = true, Message = "Doctor Master Created Successfully.", ID = DocId };
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        dbContext.Rollback();
+                        throw new Exception(CommonMethod.GetValidationMessageFromException(ex));
+                    }
+                    catch (Exception ex)
+                    {
+                        dbContext.Rollback();
+                        throw ex;
+                    }
+                }
+            }
+        }
+
+        public async Task<DO_ReturnParameter> UpdateDoctorMaster(DO_DoctorMaster obj)
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                using (var dbContext = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        GtEsdocd dc_ms = db.GtEsdocd.Where(w => w.DoctorId == obj.DoctorId).FirstOrDefault();
+                        if (dc_ms == null)
+                        {
+                            return new DO_ReturnParameter() { Status = false, Message = "Doctor Id does not exist." };
+                        }
+
+                        var isDoctorExist = db.GtEsdocd.Where(x => x.DoctorName.ToUpper().Trim() == obj.DoctorName.ToUpper().Trim() && x.DoctorId != obj.DoctorId).Count();
+                        if (isDoctorExist > 0)
+                        {
+                            return new DO_ReturnParameter() { Status = false, Message = "Doctor Name already Exists" };
+                        }
+
+                        isDoctorExist = db.GtEsdocd.Where(x => x.DoctorShortName.ToUpper().Trim() == obj.DoctorShortName.ToUpper().Trim() && x.DoctorId != obj.DoctorId).Count();
+                        if (isDoctorExist > 0)
+                        {
+                            return new DO_ReturnParameter() { Status = false, Message = "Doctor Short Name already Exists" };
+                        }
+                        if (!string.IsNullOrEmpty(obj.MobileNumber) && obj.MobileNumber != "0")
+                        {
+                            var isMobileNoExist = db.GtEsdocd.Where(x => x.MobileNumber.Trim() == obj.MobileNumber.Trim() && x.DoctorId != obj.DoctorId && x.ActiveStatus).Count();
+                            if (isMobileNoExist > 0)
+                            {
+                                return new DO_ReturnParameter() { Status = false, Message = "Mobile number entered is already Exists" };
+                            }
+                        }
+                        if (!string.IsNullOrEmpty(obj.EMailId))
+                        {
+                            var isEmailIdExist = db.GtEsdocd.Where(x => x.EmailId.Trim() == obj.EMailId.Trim() && x.DoctorId != obj.DoctorId && x.ActiveStatus).Count();
+                            if (isEmailIdExist > 0)
+                            {
+                                return new DO_ReturnParameter() { Status = false, Message = "EMail id entered is already Exists" };
+                            }
+                        }
+
+                        dc_ms.DoctorName = obj.DoctorName.Trim();
+                        dc_ms.DoctorShortName = obj.DoctorShortName;
+                        dc_ms.Gender = obj.Gender;
+                        dc_ms.Qualification = obj.Qualification;
+                        dc_ms.DoctorRegnNo = obj.DoctorRegnNo;
+                        dc_ms.Isdcode = obj.ISDCode;
+                        dc_ms.MobileNumber = obj.MobileNumber;
+                        dc_ms.EmailId = obj.EMailId;
+                        dc_ms.DoctorClass = obj.DoctorClass;
+                        dc_ms.DoctorCategory = obj.DoctorCategory;
+                        dc_ms.AllowConsultation = obj.AllowConsultation;
+                        dc_ms.IsRevenueShareApplicable = obj.IsRevenueShareApplicable;
+                        dc_ms.AllowSms = obj.AllowSMS;
+                        dc_ms.ActiveStatus = obj.ActiveStatus;
+                        dc_ms.ModifiedBy = obj.UserID;
+                        dc_ms.ModifiedOn = System.DateTime.Now;
+                        dc_ms.ModifiedTerminal = obj.TerminalID;
+                        
+                        await db.SaveChangesAsync();
+                        dbContext.Commit();
+                        return new DO_ReturnParameter() { Status = true, Message = "Doctor Master Updated Successfully." };
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        dbContext.Rollback();
+                        throw new Exception(CommonMethod.GetValidationMessageFromException(ex));
+                    }
+                    catch (Exception ex)
+                    {
+                        dbContext.Rollback();
+                        throw ex;
+                    }
+                }
+            }
+        }
+
+        public async Task<List<DO_DoctorMaster>> GetDoctorMasterList()
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                try
+                {
+                    var dc_ms = db.GtEsdocd
+                        .GroupJoin(db.GtEcapcd.Where(x => x.CodeType == CodeTypeValue.DoctorClass),
+                        d => new { d.DoctorClass },
+                        a => new { DoctorClass = a.ApplicationCode },
+                        (d, a) => new { d, a = a.FirstOrDefault() })
+                        .GroupJoin(db.GtEcapcd.Where(x => x.CodeType == CodeTypeValue.DoctorCategory),
+                        dd => new { dd.d.DoctorCategory },
+                        aa => new { DoctorCategory = aa.ApplicationCode },
+                        (dd, aa) => new { dd, aa = aa.FirstOrDefault() })
+                        .Where(w => w.dd.d.ActiveStatus == true)
+                        .AsNoTracking()
+                        .Select(x => new DO_DoctorMaster
+                        {
+                            DoctorId = x.dd.d.DoctorId,
+
+                            DoctorName = x.dd.d.DoctorName,
+                            DoctorShortName = x.dd.d.DoctorShortName,
+                            Gender = x.dd.d.Gender == "F" ? "Female" : "Male",
+                            Qualification = x.dd.d.Qualification,
+                            DoctorRegnNo = x.dd.d.DoctorRegnNo,
+                            ISDCode = x.dd.d.Isdcode,
+                            MobileNumber = x.dd.d.MobileNumber,
+                            DoctorClass = x.dd.d.DoctorClass,
+                            DoctorClassDesc = x.dd.a != null ? x.dd.a.CodeDesc : string.Empty,
+                            DoctorCategory = x.dd.d.DoctorCategory,
+                            DoctorCategoryDesc = x.aa != null ? x.aa.CodeDesc : string.Empty,
+                            AllowConsultation = x.dd.d.AllowConsultation,
+                            IsRevenueShareApplicable = x.dd.d.IsRevenueShareApplicable,
+                            AllowSMS = x.dd.d.AllowSms,
+                            ActiveStatus = x.dd.d.ActiveStatus
+
+                        }).OrderBy(x => x.DoctorName).ToListAsync();
+
+                    return await dc_ms;
+                }
+                catch (DbUpdateException ex)
+                {
+                    throw new Exception(CommonMethod.GetValidationMessageFromException(ex));
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        public async Task<List<DO_DoctorMaster>> GetDoctorMasterListForPrefix(string doctorNamePrefix)
+        {
+            if (doctorNamePrefix == null)
+                doctorNamePrefix = "";
+            using (var db = new eSyaEnterprise())
+            {
+                try
+                {
+                    var dc_ms = db.GtEsdocd
+                        .GroupJoin(db.GtEcapcd.Where(x => x.CodeType == CodeTypeValue.DoctorClass),
+                        d => new { d.DoctorClass },
+                        a => new { DoctorClass = a.ApplicationCode },
+                        (d, a) => new { d, a = a.FirstOrDefault() })
+                        .GroupJoin(db.GtEcapcd.Where(x => x.CodeType == CodeTypeValue.DoctorCategory),
+                        dd => new { dd.d.DoctorCategory },
+                        aa => new { DoctorCategory = aa.ApplicationCode },
+                        (dd, aa) => new { dd, aa = aa.FirstOrDefault() })
+                        .Where(w => w.dd.d.DoctorName.StartsWith(doctorNamePrefix))
+                        .AsNoTracking()
+                        .Select(x => new DO_DoctorMaster
+                        {
+                            DoctorId = x.dd.d.DoctorId,
+
+                            DoctorName = x.dd.d.DoctorName,
+                            DoctorShortName = x.dd.d.DoctorShortName,
+                            Gender = x.dd.d.Gender == "F" ? "Female" : "Male",
+                            Qualification = x.dd.d.Qualification,
+                            DoctorRegnNo = x.dd.d.DoctorRegnNo,
+                            ISDCode = x.dd.d.Isdcode,
+                            MobileNumber = x.dd.d.MobileNumber,
+                            DoctorClass = x.dd.d.DoctorClass,
+                            DoctorClassDesc = x.dd.a != null ? x.dd.a.CodeDesc : string.Empty,
+                            DoctorCategory = x.dd.d.DoctorCategory,
+                            DoctorCategoryDesc = x.aa != null ? x.aa.CodeDesc : string.Empty,
+                            AllowConsultation = x.dd.d.AllowConsultation,
+                            IsRevenueShareApplicable = x.dd.d.IsRevenueShareApplicable,
+                            AllowSMS = x.dd.d.AllowSms,
+                            ActiveStatus = x.dd.d.ActiveStatus
+
+                        }).OrderBy(x => x.DoctorName).ToListAsync();
+
+                    return await dc_ms;
+                }
+                catch (DbUpdateException ex)
+                {
+                    throw new Exception(CommonMethod.GetValidationMessageFromException(ex));
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        public async Task<DO_DoctorMaster> GetDoctorMaster(int doctorId)
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                try
+                {
+                    var dc_ms = db.GtEsdocd
+                        .Join(db.GtEcapcd.Where(x => x.CodeType == CodeTypeValue.DoctorClass),
+                        d => new { d.DoctorClass },
+                        a => new { DoctorClass = a.ApplicationCode},
+                        (d,a) => new { d, a})
+                        .Join(db.GtEcapcd.Where(x => x.CodeType == CodeTypeValue.DoctorCategory),
+                        dd => new { dd.d.DoctorCategory},
+                        aa => new { DoctorCategory = aa.ApplicationCode },
+                        (dd, aa) => new { dd,aa})
+                        .Where(w => w.dd.d.DoctorId == doctorId)
+                        .AsNoTracking()
+                        .Select(x => new DO_DoctorMaster
+                        {
+                            DoctorId = x.dd.d.DoctorId,
+                            DoctorName = x.dd.d.DoctorName,
+                            DoctorShortName = x.dd.d.DoctorShortName,
+                            Gender = x.dd.d.Gender,
+                            Qualification = x.dd.d.Qualification,
+                            EMailId = x.dd.d.EmailId,
+                            DoctorRegnNo = x.dd.d.DoctorRegnNo,
+                            ISDCode = x.dd.d.Isdcode,
+                            MobileNumber = x.dd.d.MobileNumber,
+                            DoctorClass=x.dd.d.DoctorClass,
+                            DoctorClassDesc = x.dd.a.CodeDesc,
+                            DoctorCategory = x.dd.d.DoctorCategory,
+                            DoctorCategoryDesc = x.aa.CodeDesc,
+                            AllowConsultation = x.dd.d.AllowConsultation,
+                            IsRevenueShareApplicable = x.dd.d.IsRevenueShareApplicable,
+                            AllowSMS = x.dd.d.AllowSms,
+                            ActiveStatus = x.dd.d.ActiveStatus
+
+                        }).FirstOrDefaultAsync();
+
+                    return await dc_ms;
+                }
+                catch (DbUpdateException ex)
+                {
+                    throw new Exception(CommonMethod.GetValidationMessageFromException(ex));
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+        #endregion
+
+        #region Doctor Business Link
+        public async Task<List<DO_DoctorMaster>> GetDoctorMasterBusinessList(int businessKey)
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                try
+                {
+                    var dc_ms = db.GtEsdocd
+                        .GroupJoin(db.GtEcapcd.Where(x => x.CodeType == CodeTypeValue.DoctorClass),
+                        d => new { d.DoctorClass },
+                        a => new { DoctorClass = a.ApplicationCode },
+                        (d, a) => new { d, a = a.FirstOrDefault() })
+                        .GroupJoin(db.GtEcapcd.Where(x => x.CodeType == CodeTypeValue.DoctorCategory),
+                        dd => new { dd.d.DoctorCategory },
+                        aa => new { DoctorCategory = aa.ApplicationCode },
+                        (dd, aa) => new { dd, aa = aa.FirstOrDefault() })
+                        .GroupJoin(db.GtEsdobl.Where(x => x.BusinessKey == businessKey && x.ActiveStatus),
+                        ddd => new { ddd.dd.d.DoctorId },
+                        dbl => new { dbl.DoctorId },
+                        (ddd, dbl) => new { ddd, dbl = dbl.FirstOrDefault() })
+                        .Where(w => w.ddd.dd.d.ActiveStatus == true)
+                        .AsNoTracking()
+                        .Select(x => new DO_DoctorMaster
+                        {
+                            DoctorId = x.ddd.dd.d.DoctorId,
+
+                            DoctorName = x.ddd.dd.d.DoctorName,
+                            DoctorShortName = x.ddd.dd.d.DoctorShortName,
+                            Gender = x.ddd.dd.d.Gender == "F" ? "Female" : "Male",
+                            Qualification = x.ddd.dd.d.Qualification,
+                            DoctorRegnNo = x.ddd.dd.d.DoctorRegnNo,
+                            ISDCode = x.ddd.dd.d.Isdcode,
+                            MobileNumber = x.ddd.dd.d.MobileNumber,
+                            DoctorClass = x.ddd.dd.d.DoctorClass,
+                            DoctorClassDesc = x.ddd.dd.a != null ? x.ddd.dd.a.CodeDesc : string.Empty,
+                            DoctorCategory = x.ddd.dd.d.DoctorCategory,
+                            DoctorCategoryDesc = x.ddd.aa != null ? x.ddd.aa.CodeDesc : string.Empty,
+                            AllowConsultation = x.ddd.dd.d.AllowConsultation,
+                            IsRevenueShareApplicable = x.ddd.dd.d.IsRevenueShareApplicable,
+                            AllowSMS = x.ddd.dd.d.AllowSms,
+                            ActiveStatus = x.dbl != null ? x.dbl.ActiveStatus : false
+
+                        }).OrderBy(x => x.DoctorName).ToListAsync();
+
+                    return await dc_ms;
+                }
+                catch (DbUpdateException ex)
+                {
+                    throw new Exception(CommonMethod.GetValidationMessageFromException(ex));
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        public async Task<DO_ReturnParameter> InsertIntoDoctorBusinessLink(List<DO_DoctorMaster> obj)
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                using (var dbContext = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        bool dataSaved = false;
+                        foreach (DO_DoctorMaster objDM in obj)
+                        {
+                            GtEsdobl dMaster = db.GtEsdobl.Where(x => x.BusinessKey == objDM.BusinessKey && x.DoctorId == objDM.DoctorId).FirstOrDefault();
+                            if (dMaster == null)
+                            {
+                                if (objDM.ActiveStatus)
+                                {
+                                    dMaster = new GtEsdobl
+                                    {
+                                        BusinessKey = objDM.BusinessKey,
+                                        DoctorId = objDM.DoctorId,
+                                        ActiveStatus = objDM.ActiveStatus,
+                                        FormId = objDM.FormID,
+                                        CreatedBy = objDM.UserID,
+                                        CreatedOn = System.DateTime.Now,
+                                        CreatedTerminal = objDM.TerminalID,
+
+                                    };
+                                    db.GtEsdobl.Add(dMaster);
+                                    dataSaved = true;
+                                }
+                            }
+                            else if(objDM.ActiveStatus != dMaster.ActiveStatus)
+                            {
+                                dMaster.ActiveStatus = objDM.ActiveStatus;
+                                dMaster.ModifiedBy = objDM.UserID;
+                                dMaster.ModifiedOn = System.DateTime.Now;
+                                dMaster.ModifiedTerminal = objDM.TerminalID;
+                                dataSaved = true;
+                            }
+                        }
+                        if(!dataSaved)
+                        {
+                            return new DO_ReturnParameter() { Status = false, Message = "Please Select any Doctor to Save." };
+                        }
+
+                        await db.SaveChangesAsync();
+                        dbContext.Commit();
+                        return new DO_ReturnParameter() { Status = true, Message = "Doctor Business Link Updated Successfully." };
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        dbContext.Rollback();
+                        throw new Exception(CommonMethod.GetValidationMessageFromException(ex));
+                    }
+                    catch (Exception ex)
+                    {
+                        dbContext.Rollback();
+                        throw ex;
+                    }
+                }
+            }
+        }
+
+        public async Task<List<DO_BusinessLocation>> GetBusinessLocationDoctorList(int doctorId)
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                try
+                {
+                    var dc_ms = db.GtEcbsln
+                        .GroupJoin(db.GtEsdobl.Where(x => x.DoctorId == doctorId),
+                        d => new { d.BusinessKey },
+                        a => new { a.BusinessKey },
+                        (d, a) => new { d, a = a.FirstOrDefault() })
+                        //.Join(db.GtEsdocd,
+                        //aa => new { aa.a.DoctorId },
+                        //bb => new { bb.DoctorId },
+                        //(aa, bb) => new { aa, bb })
+                        .Where(w => w.d.ActiveStatus == true)
+                        .AsNoTracking()
+                        .Select(x => new DO_BusinessLocation
+                        {
+                            BusinessKey = x.d.BusinessKey,
+                            LocationDescription = x.d.LocationDescription,
+                            //SegmentDesc = Convert.ToString(x.d.GtEcbssg.SegmentDesc),
+                            SegmentDesc = x.d.BusinessName,
+                            ActiveStatus = x.a != null ? x.a.ActiveStatus : false
+
+                        }).OrderBy(x => x.LocationDescription).ToListAsync();
+
+                    return await dc_ms;
+                }
+                catch (DbUpdateException ex)
+                {
+                    throw new Exception(CommonMethod.GetValidationMessageFromException(ex));
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        public async Task<DO_ReturnParameter> InsertIntoBusinessDoctorLink(List<DO_DoctorMaster> obj)
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                using (var dbContext = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        bool dataSaved = false;
+                        foreach (DO_DoctorMaster objDM in obj)
+                        {
+                            GtEsdobl dMaster = db.GtEsdobl.Where(x => x.BusinessKey == objDM.BusinessKey && x.DoctorId == objDM.DoctorId).FirstOrDefault();
+                            if (dMaster == null)
+                            {
+                                if (objDM.ActiveStatus)
+                                {
+                                    dMaster = new GtEsdobl
+                                    {
+                                        BusinessKey = objDM.BusinessKey,
+                                        DoctorId = objDM.DoctorId,
+                                        ActiveStatus = objDM.ActiveStatus,
+                                        FormId = objDM.FormID,
+                                        CreatedBy = objDM.UserID,
+                                        CreatedOn = System.DateTime.Now,
+                                        CreatedTerminal = objDM.TerminalID,
+
+                                    };
+                                    db.GtEsdobl.Add(dMaster);
+                                    dataSaved = true;
+                                }
+                            }
+                            else if (objDM.ActiveStatus != dMaster.ActiveStatus)
+                            {
+                                dMaster.ActiveStatus = objDM.ActiveStatus;
+                                dMaster.ModifiedBy = objDM.UserID;
+                                dMaster.ModifiedOn = System.DateTime.Now;
+                                dMaster.ModifiedTerminal = objDM.TerminalID;
+                                dataSaved = true;
+                            }
+                        }
+                        if (!dataSaved)
+                        {
+                            return new DO_ReturnParameter() { Status = false, Message = "Please Select any Business Location." };
+                        }
+
+                        await db.SaveChangesAsync();
+                        dbContext.Commit();
+                        return new DO_ReturnParameter() { Status = true, Message = "Business Location Updated Successfully." };
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        dbContext.Rollback();
+                        throw new Exception(CommonMethod.GetValidationMessageFromException(ex));
+                    }
+                    catch (Exception ex)
+                    {
+                        dbContext.Rollback();
+                        throw ex;
+                    }
+                }
+            }
+        }
+
+        public async Task<List<DO_BusinessLocation>> GetDoctorBusinessKey(int doctorId)
+        {
+            try
+            {
+                using (var db = new eSyaEnterprise())
+                {
+                    var bk = db.GtEcbsln
+                        .Join(db.GtEsdobl, 
+                        l => new {l.BusinessKey},
+                        d => new {d.BusinessKey},
+                        (l,d) => new {l,d}
+                        )
+                        .Where(w => w.d.ActiveStatus && w.l.ActiveStatus && w.d.DoctorId == doctorId)
+                        .Select(r => new DO_BusinessLocation
+                        {
+                            BusinessKey = r.l.BusinessKey,
+                            LocationDescription = r.l.BusinessName + " - " + r.l.LocationDescription,
+                            SegmentDesc = r.l.GtEcbssg.SegmentDesc
+                        }).Distinct().ToListAsync();
+
+                    return await bk;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        #endregion
+
+        #region Specialty Doctor Link
+
+        public async Task<List<DO_SpecialtyDoctorLink>> GetSpecialtyListByDoctorId(int doctorId)
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                try
+                {
+                    var do_ms = db.GtEsdosp
+                        .Join(db.GtEsspcd,
+                        d => new { d.SpecialtyId },
+                        s => new { s.SpecialtyId },
+                        (d, s) => new { d, s }
+                        )
+                        .Join(db.GtEcbsln,
+                        dd => new {dd.d.BusinessKey},
+                        b => new {b.BusinessKey},
+                        (dd,b) => new {dd,b}
+                        )
+                        .Where(w => w.dd.d.DoctorId == doctorId && w.b.ActiveStatus && w.dd.s.ActiveStatus)
+                        .AsNoTracking()
+                        .Select(x => new DO_SpecialtyDoctorLink
+                        {
+                            DoctorID = x.dd.d.DoctorId,
+                            SpecialtyID = x.dd.s.SpecialtyId,
+                            SpecialtyDesc = x.dd.s.SpecialtyDesc,
+                            LocationDesc = x.b.LocationDescription,
+                            BusinessKey = x.dd.d.BusinessKey,
+                            ActiveStatus = x.dd.d.ActiveStatus
+
+                        }).OrderBy(x => x.DoctorName).ToListAsync();
+
+                    return await do_ms;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        public async Task<DO_ReturnParameter> InsertDoctorSpecialtyLink(DO_SpecialtyDoctorLink obj)
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                using (var dbContext = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        GtEsdosp spDl = db.GtEsdosp.Where(x => x.BusinessKey == obj.BusinessKey && x.SpecialtyId == obj.SpecialtyID && x.DoctorId == obj.DoctorID).FirstOrDefault();
+                        if (spDl != null)
+                        {
+                            return new DO_ReturnParameter() { Status = false, Message = "Specialty is already linked with the Doctor" };
+                        }
+                        else if (obj.ActiveStatus)
+                        {
+                            var sMaster = new GtEsdosp
+                            {
+                                BusinessKey = obj.BusinessKey,
+                                SpecialtyId = obj.SpecialtyID,
+                                DoctorId = obj.DoctorID,
+                                ActiveStatus = obj.ActiveStatus,
+                                FormId = obj.FormId,
+                                CreatedBy = obj.UserID,
+                                CreatedOn = System.DateTime.Now,
+                                CreatedTerminal = obj.TerminalID,
+
+                            };
+                            db.GtEsdosp.Add(sMaster);
+                        }
+
+                        await db.SaveChangesAsync();
+                        dbContext.Commit();
+                        return new DO_ReturnParameter() { Status = true, Message = "Specialty Linked with Doctor Successfully." };
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        dbContext.Rollback();
+                        throw new Exception(CommonMethod.GetValidationMessageFromException(ex));
+                    }
+                    catch (Exception ex)
+                    {
+                        dbContext.Rollback();
+                        throw ex;
+                    }
+                }
+            }
+        }
+
+        public async Task<DO_ReturnParameter> UpdateDoctorSpecialtyLink(DO_SpecialtyDoctorLink obj)
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                using (var dbContext = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        GtEsdosp sp_ms = db.GtEsdosp.Where(w => w.SpecialtyId == obj.SpecialtyID && w.BusinessKey == obj.BusinessKey && w.DoctorId == obj.DoctorID).FirstOrDefault();
+                        if (sp_ms == null)
+                        {
+                            return new DO_ReturnParameter() { Status = false, Message = "Specialty does not exist." };
+                        }
+
+                        sp_ms.ActiveStatus = obj.ActiveStatus;
+                        sp_ms.ModifiedBy = obj.UserID;
+                        sp_ms.ModifiedOn = System.DateTime.Now;
+                        sp_ms.ModifiedTerminal = obj.TerminalID;
+
+                        await db.SaveChangesAsync();
+                        dbContext.Commit();
+                        return new DO_ReturnParameter() { Status = true, Message = "Specialty Link Updated Successfully." };
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        dbContext.Rollback();
+                        throw new Exception(CommonMethod.GetValidationMessageFromException(ex));
+                    }
+                    catch (Exception ex)
+                    {
+                        dbContext.Rollback();
+                        throw ex;
+                    }
+                }
+            }
+        }
+
+        public async Task<List<DO_SpecialtyDoctorLink>> GetSpecialtyListByBKeyDoctorId(int businessKey, int doctorId)
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                try
+                {
+                    var do_ms = db.GtEsdosp
+                        .Join(db.GtEsspcd,
+                        d => new { d.SpecialtyId },
+                        c => new { c.SpecialtyId },
+                        (d, c) => new { d, c }
+                        )
+                        .Where(w => w.d.BusinessKey == businessKey && w.d.DoctorId == doctorId && w.d.ActiveStatus && w.c.ActiveStatus)
+                        .AsNoTracking()
+                        .Select(x => new DO_SpecialtyDoctorLink
+                        {
+                            DoctorID = x.d.DoctorId,
+                            SpecialtyID = x.d.SpecialtyId,
+                            SpecialtyDesc = x.c.SpecialtyDesc
+
+                        }).OrderBy(x => x.DoctorName).ToListAsync();
+
+                    return await do_ms;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+        #endregion
+    }
+}
+

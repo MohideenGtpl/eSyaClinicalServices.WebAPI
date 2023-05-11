@@ -1,0 +1,9 @@
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.DO\eSyaClinicalServices.DO\bin\Release\netcoreapp2.2\HCP.ClinicalServices.DO.deps.json
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.DO\eSyaClinicalServices.DO\bin\Release\netcoreapp2.2\HCP.ClinicalServices.DO.dll
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.DO\eSyaClinicalServices.DO\bin\Release\netcoreapp2.2\HCP.ClinicalServices.DO.pdb
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.DO\eSyaClinicalServices.DO\obj\Release\netcoreapp2.2\HCP.ClinicalServices.DO.csprojAssemblyReference.cache
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.DO\eSyaClinicalServices.DO\obj\Release\netcoreapp2.2\HCP.ClinicalServices.DO.csproj.CoreCompileInputs.cache
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.DO\eSyaClinicalServices.DO\obj\Release\netcoreapp2.2\HCP.ClinicalServices.DO.AssemblyInfoInputs.cache
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.DO\eSyaClinicalServices.DO\obj\Release\netcoreapp2.2\HCP.ClinicalServices.DO.AssemblyInfo.cs
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.DO\eSyaClinicalServices.DO\obj\Release\netcoreapp2.2\HCP.ClinicalServices.DO.dll
+D:\eSya Project\Solution\Project_eSyaWebAPI\eSyaClinicalServices.WebAPI\trunk\eSyaClinicalServices.DO\eSyaClinicalServices.DO\obj\Release\netcoreapp2.2\HCP.ClinicalServices.DO.pdb

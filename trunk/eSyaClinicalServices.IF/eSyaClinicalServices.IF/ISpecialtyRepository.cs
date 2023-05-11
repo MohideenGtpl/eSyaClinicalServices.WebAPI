@@ -1,0 +1,24 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+using HCP.ClinicalServices.DO;
+
+namespace HCP.ClinicalServices.IF
+{
+    public interface ISpecialtyRepository
+    {
+        Task<DO_ReturnParameter> InsertSpecialtyBusinessLink(DO_SpecialtyBusinessLink obj);
+        Task<DO_ReturnParameter> InsertSpecialtyBusinessLinkList(DO_SpecialtyBusinessLink obj, List<DO_SpecialtyParameter> objPar);
+        Task<DO_ReturnParameter> UpdateSpecialtyBusinessLink(DO_SpecialtyBusinessLink obj);
+        Task<List<DO_SpecialtyBusinessLink>> GetSpecialtyBusinessList(int businessKey);
+        Task<List<DO_SpecialtyBusinessLink>> GetSpecialtyListForBusinessKey(int businessKey);
+        //Task<List<DO_SpecialtyClinicLink>> GetSpecialtyClinicLinkList(int businessKey, int specialtyId);
+        Task<List<DO_SpecialtyParameter>> GetSpecialtyParameterList(int businessKey, int specialtyId);
+
+        Task<DO_ReturnParameter> InsertSpecialtyDoctorLinkList(List<DO_SpecialtyDoctorLink> obj);
+        Task<DO_ReturnParameter> UpdateSpecialtyDoctorLink(DO_SpecialtyDoctorLink obj);
+        Task<List<DO_SpecialtyDoctorLink>> GetSpecialtyDoctorLinkList(int businessKey, int specialtyId);
+        Task<List<DO_SpecialtyDoctorLink>> GetDoctorListByBKeySpecialtyId(int businessKey, int specialtyId);
+    }
+}

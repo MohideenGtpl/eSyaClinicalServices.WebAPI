@@ -1,0 +1,57 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using eSyaClinicalServices.IF;
+using eSyaClinicalServices.DO;
+
+namespace eSyaClinicalServices.WebAPI.Controllers
+{
+    [Route("api/[controller]/[action]")]
+    [ApiController]
+    public class ClinicServicesController : ControllerBase
+    {
+        private readonly IClinicRepository _ClinicRepository;
+
+        public ClinicServicesController(IClinicRepository clinicRepository)
+        {
+            _ClinicRepository = clinicRepository;
+        }
+        #region ClinicServiceLink
+        public async Task<IActionResult> GetClinicServiceLinkByBKey(int businessKey)
+        {
+            var ac = await _ClinicRepository.GetClinicServiceLinkByBKey(businessKey);
+            return Ok(ac);
+        }
+        public async Task<IActionResult> GetConsultationTypeByBKeyClinicType(int businessKey, int clinictype)
+        {
+            var ac = await _ClinicRepository.GetConsultationTypeByBKeyClinicType(businessKey, clinictype);
+            return Ok(ac);
+        }
+        public async Task<IActionResult> GetServicesPerformedByDoctor()
+        {
+            var ac = await _ClinicRepository.GetServicesPerformedByDoctor();
+            return Ok(ac);
+        }
+        public async Task<IActionResult> AddClinicServiceLink(DO_ClinicServiceLink obj)
+        {
+            var msg = await _ClinicRepository.AddClinicServiceLink(obj);
+            return Ok(msg);
+        }
+        #endregion
+
+        #region ClinicVisitRate
+        public async Task<IActionResult> GetClinicVisitRateByBKeyClinicTypeCurrCodeRateType(int businessKey, int clinictype, string currencycode, int ratetype)
+        {
+            var ac = await _ClinicRepository.GetClinicVisitRateByBKeyClinicTypeCurrCodeRateType(businessKey, clinictype, currencycode, ratetype);
+            return Ok(ac);
+        }
+        public async Task<IActionResult> AddOrUpdateClinicVisitRate(List<DO_ClinicVisitRate> obj)
+        {
+            var msg = await _ClinicRepository.AddOrUpdateClinicVisitRate(obj);
+            return Ok(msg);
+        }
+        #endregion
+    }
+}

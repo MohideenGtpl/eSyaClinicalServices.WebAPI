@@ -1,0 +1,99 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using eSyaClinicalServices.IF;
+using eSyaClinicalServices.DO;
+
+namespace eSyaClinicalServices.WebAPI.Controllers
+{
+    [Route("api/[controller]/[action]")]
+    [ApiController]
+    public class ClinicController : ControllerBase
+    {
+        private readonly IClinicRepository _ClinicRepository;
+
+        public ClinicController(IClinicRepository clinicRepository)
+        {
+            _ClinicRepository = clinicRepository;
+        }
+
+        /// <summary>
+        /// Insert / Update into OP Clinic Table
+        /// UI Reffered - Clinic & Consultation,
+        /// </summary>
+        [HttpPost]
+        public async Task<IActionResult> InsertUpdateOPClinicLink(List<DO_OPClinic> obj)
+        {
+            var msg = await _ClinicRepository.InsertUpdateOPClinicLink(obj);
+            return Ok(msg);
+        }
+
+        /// <summary>
+        /// Get All Clinic Consultant
+        /// UI Reffered - Clinic & Consultation,
+        /// </summary>
+        [HttpGet]
+        public async Task<IActionResult> GetClinicConsultantIdList(int businessKey)
+        {
+            var msg = await _ClinicRepository.GetClinicConsultantIdList(businessKey);
+            return Ok(msg);
+        }
+
+        /// <summary>
+        /// Get All Clinic Consultant 
+        /// UI Reffered - Doctor Clinic Link,
+        /// </summary>
+        [HttpGet]
+        public async Task<IActionResult> GetDoctorClinicLinkList(int businessKey, int specialtyId, int doctorId)
+        {
+            var msg = await _ClinicRepository.GetDoctorClinicLinkList(businessKey, specialtyId, doctorId);
+            return Ok(msg);
+        }
+
+        /// <summary>
+        /// Insert / Update into Doctor Clinic Table
+        /// UI Reffered - Doctor Clinic Link,
+        /// </summary>
+        [HttpPost]
+        public async Task<IActionResult> InsertUpdateDoctorClinicLink(List<DO_DoctorClinic> obj)
+        {
+            var msg = await _ClinicRepository.InsertUpdateDoctorClinicLink(obj);
+            return Ok(msg);
+        }
+
+        /// <summary>
+        /// Get Clinic Room Master List by BusinessKey and Floor Id 
+        /// UI Reffered - Clinic Room Master,
+        /// </summary>
+        [HttpGet]
+        public async Task<IActionResult> GetClinicRoomListByBKeyFloorId(int businessKey, int floorId)
+        {
+            var msg = await _ClinicRepository.GetClinicRoomListByBKeyFloorId(businessKey, floorId);
+            return Ok(msg);
+        }
+
+        /// <summary>
+        /// Insert into Clinic Room Master Table
+        /// UI Reffered - Clinic Room Master,
+        /// </summary>
+        [HttpPost]
+        public async Task<IActionResult> InsertIntoClinicRoomMaster(DO_ClinicRoom obj)
+        {
+            var msg = await _ClinicRepository.InsertIntoClinicRoomMaster(obj);
+            return Ok(msg);
+        }
+
+        /// <summary>
+        /// Update Clinic Room Master Table
+        /// UI Reffered - Clinic Room Master,
+        /// </summary>
+        [HttpPost]
+        public async Task<IActionResult> UpdateClinicRoomMaster(DO_ClinicRoom obj)
+        {
+            var msg = await _ClinicRepository.UpdateClinicRoomMaster(obj);
+            return Ok(msg);
+        }
+    }
+}

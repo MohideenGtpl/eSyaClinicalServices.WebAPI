@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+using eSyaClinicalServices.DO;
+
+namespace eSyaClinicalServices.IF
+{
+    public interface ISpecialtyRepository
+    {
+        Task<DO_ReturnParameter> InsertSpecialtyClinicLink(DO_SpecialtyClinicLink obj);
+        Task<DO_ReturnParameter> InsertSpecialtyClinicLinkList(List<DO_SpecialtyClinicLink> obj, List<DO_SpecialtyParameter> objPar);
+        Task<DO_ReturnParameter> UpdateSpecialtyClinicLink(DO_SpecialtyClinicLink obj);
+        Task<List<DO_SpecialtyClinicLink>> GetSpecialtyClinicList(int businessKey);
+        Task<List<DO_SpecialtyClinicLink>> GetSpecialtyListForBusinessKey(int businessKey);
+        Task<List<DO_SpecialtyClinicLink>> GetSpecialtyClinicLinkList(int businessKey, int specialtyId);
+        Task<List<DO_SpecialtyParameter>> GetSpecialtyParameterList(int businessKey, int specialtyId);
+        Task<DO_ReturnParameter> InsertSpecialtyDoctorLinkList(List<DO_SpecialtyDoctorLink> obj);
+        Task<DO_ReturnParameter> UpdateSpecialtyDoctorLink(DO_SpecialtyDoctorLink obj);
+        Task<List<DO_SpecialtyDoctorLink>> GetSpecialtyDoctorLinkList(int businessKey, int specialtyId);
+    }
+}

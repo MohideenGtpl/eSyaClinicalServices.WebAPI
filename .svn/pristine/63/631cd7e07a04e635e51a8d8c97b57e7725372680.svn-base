@@ -1,0 +1,66 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+using HCP.ClinicalServices.DO;
+
+namespace HCP.ClinicalServices.IF
+{
+    public interface IDoctorMasterRepository
+    {
+        Task<DO_ReturnParameter> InsertIntoDoctorMaster(DO_DoctorMaster obj);
+
+        Task<DO_ReturnParameter> UpdateDoctorMaster(DO_DoctorMaster obj);
+
+        Task<List<DO_DoctorMaster>> GetDoctorMasterList();
+
+        Task<DO_DoctorMaster> GetDoctorMaster(int doctorId);
+
+        Task<List<DO_DoctorMaster>> GetDoctorMasterListForPrefix(string doctorNamePrefix);
+
+        Task<DO_ReturnParameter> ActiveOrDeActiveDoctor(bool status, int doctorId);
+
+        Task<List<DO_DoctorMaster>> GetDoctorMasterBusinessList(int businessKey);
+
+        Task<DO_ReturnParameter> InsertIntoDoctorBusinessLink(List<DO_DoctorMaster> obj);
+
+        Task<List<DO_BusinessLocation>> GetBusinessLocationDoctorList(int doctorId);
+
+        Task<DO_ReturnParameter> InsertIntoBusinessDoctorLink(List<DO_DoctorMaster> obj);
+
+        Task<List<DO_BusinessLocation>> GetDoctorBusinessKey(int doctorId);
+
+        Task<List<DO_BusinessLocation>> GetDoctorLocationbyDoctorId(int doctorId);
+
+        Task<List<DO_SpecialtyDoctorLink>> GetSpecialtyListByDoctorId(int doctorId);
+
+        Task<DO_ReturnParameter> InsertDoctorSpecialtyLink(DO_SpecialtyDoctorLink obj);
+
+        Task<DO_ReturnParameter> UpdateDoctorSpecialtyLink(DO_SpecialtyDoctorLink obj);
+
+        Task<List<DO_SpecialtyDoctorLink>> GetSpecialtyListByBKeyDoctorId(int businessKey, int doctorId);
+
+        #region Doctor Details
+        Task<Do_DoctorDetails> GetDoctordetailsbydoctorId(int doctorId);
+        Task<DO_ReturnParameter> InsertOrUpdateIntoDoctordetails(Do_DoctorDetails obj);
+        #endregion Doctor Details
+
+        #region Doctor day Schedule 
+
+        Task<List<DO_SpecialtyCodes>> GetSpecialtiesByBusinessKey(int businessKey);
+
+        Task<List<DO_DoctorClinic>> GetClinicAndConsultationTypebySpecialty(int businessKey, int specialtyId);
+
+        Task<List<DO_DoctorMaster>> GetDoctorsbySpecialtyClinicAndConsultation(int businessKey, int specialtyId, int clinicId, int consultationId);
+
+        Task<List<DO_DoctordaySchedule>> GetDoctordaySchedulebySearchCriteria(int businessKey, int specialtyId, int clinicId, int consultationId, int doctorId, DateTime scheduleFromDate, DateTime scheduleToDate);
+
+        Task<DO_ReturnParameter> InsertIntoDoctordaySchedule(DO_DoctordaySchedule obj);
+
+        Task<DO_ReturnParameter> UpdateDoctordaySchedule(DO_DoctordaySchedule obj);
+
+        Task<DO_ReturnParameter> ActiveOrDeActiveDoctordaySchedule(DO_DoctordaySchedule objdel);
+
+        #endregion
+    }
+}

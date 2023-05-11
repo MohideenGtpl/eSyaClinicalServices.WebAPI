@@ -1,0 +1,15 @@
+﻿using eSyaClinicalServices.DO;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace eSyaClinicalServices.IF
+{
+    public interface IClinicRepository
+    {
+        Task<DO_ReturnParameter> InsertIntoOPClinic(DO_OPClinic obj);
+
+        Task<List<DO_OPClinic>> GetClinicConsultantIdList(int businessKey);
+    }
+}

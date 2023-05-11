@@ -1,0 +1,12 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace eSyaClinicalServices.DO
+{
+    public class CodeTypeValue
+    {
+        public const int DoctorClass = 9;
+        public const int DoctorCategory = 10;
+    }
+}

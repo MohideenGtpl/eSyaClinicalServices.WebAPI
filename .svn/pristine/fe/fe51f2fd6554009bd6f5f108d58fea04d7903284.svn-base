@@ -1,0 +1,127 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using eSyaClinicalServices.IF;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using eSyaClinicalServices.DO;
+using eSyaClinicalServices.DL.Entities;
+
+namespace eSyaClinicalServices.DL.Repository
+{
+    public class ClinicRepository : IClinicRepository
+    {
+        public async Task<DO_ReturnParameter> InsertIntoOPClinic(DO_OPClinic obj)
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                using (var dbContext = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        var op_cl = new GtEsopcl
+                        {
+                            BusinessKey = obj.BusinessKey,
+                            ClinicId = obj.ClinicId,
+                            ConsultationId = obj.ConsultationId,
+                            ActiveStatus = obj.ActiveStatus,
+                            FormId = obj.FormId,
+                            CreatedBy = obj.UserID,
+                            CreatedOn = System.DateTime.Now,
+                            CreatedTerminal = obj.TerminalID,
+                        };
+                        db.GtEsopcl.Add(op_cl);
+
+                        await db.SaveChangesAsync();
+                        dbContext.Commit();
+                        return new DO_ReturnParameter() { Status = true, Message = "Clinic Created Successfully." };
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        dbContext.Rollback();
+                        throw new Exception(CommonMethod.GetValidationMessageFromException(ex));
+                    }
+                    catch (Exception ex)
+                    {
+                        dbContext.Rollback();
+                        throw ex;
+                    }
+                }
+            }
+        }
+
+        //public async Task<DO_ReturnParameter> UpdateOPClinic(DO_OPClinic obj)
+        //{
+        //    using (var db = new eSyaEnterprise())
+        //    {
+        //        using (var dbContext = db.Database.BeginTransaction())
+        //        {
+        //            try
+        //            {
+        //                GtEsopcl sp_ms = db.GtEsspbl.Where(w => w.SpecialtyId == obj.SpecialtyID && w.BusinessKey == obj.BusinessKey).FirstOrDefault();
+        //                if (sp_ms == null)
+        //                {
+        //                    return new DO_ReturnParameter() { Status = false, Message = "Specialty Id does not exist." };
+        //                }
+
+        //                sp_ms.ActiveStatus = obj.ActiveStatus;
+        //                sp_ms.ModifiedBy = obj.UserID;
+        //                sp_ms.ModifiedOn = System.DateTime.Now;
+        //                sp_ms.ModifiedTerminal = obj.TerminalID;
+
+        //                await db.SaveChangesAsync();
+        //                dbContext.Commit();
+        //                return new DO_ReturnParameter() { Status = true, Message = "Specialty Link Updated Successfully." };
+        //            }
+        //            catch (DbUpdateException ex)
+        //            {
+        //                dbContext.Rollback();
+        //                throw new Exception(CommonMethod.GetValidationMessageFromException(ex));
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                dbContext.Rollback();
+        //                throw ex;
+        //            }
+        //        }
+        //    }
+        //}
+
+        public async Task<List<DO_OPClinic>> GetClinicConsultantIdList(int businessKey)
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                try
+                {
+                    var cl_co = db.GtEcapcd
+                        .Join(db.GtEcapcd.Where(w => w.CodeType == CodeTypeValue.ConsultationType),
+                        l => true,
+                        c => true,
+                        (l, c) => new { l, c })
+                        .GroupJoin(db.GtEsopcl.Where(w => w.BusinessKey == businessKey),
+                        lc => new { ConsultationId = lc.c.ApplicationCode, ClinicId = lc.l.ApplicationCode },
+                        o =>  new { o.ConsultationId, o.ClinicId } ,
+                        (lc, o) => new { lc, o = o.FirstOrDefault() }).DefaultIfEmpty()
+                        .Where(w => w.lc.l.CodeType == CodeTypeValue.Clinic)
+                        .AsNoTracking()
+                        .Select(r => new DO_OPClinic
+                        {
+                            BusinessKey = r.o != null ? r.o.BusinessKey : 0,
+                            ClinicId = r.lc.l.ApplicationCode,
+                            ClinicDesc = r.lc.l.CodeDesc,
+                            ConsultationId = r.lc.c.ApplicationCode,
+                            ConsultationDesc = r.lc.c.CodeDesc,
+                            ActiveStatus = r.o != null ? r.o.ActiveStatus : false
+                        }).OrderBy(x => x.ClinicDesc).ToListAsync();
+
+                    return await cl_co;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+    }
+}
